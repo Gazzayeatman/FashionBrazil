@@ -1,0 +1,138 @@
+body {
+    font-family: helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif;
+}
+.container-fluid {
+    padding-left: 0!important;
+    padding-right: 0 !important;
+}
+.navbar {
+    background-color: #009FEE;
+    border: 0px;    
+}
+.navbar .navbar-nav li a {
+    color: #FFFFFF;
+    font-size: 1.2em;
+}
+.navbar .navbar-nav li a .fa {
+    font-size: 1.4em;
+}
+.navbar .navbar-nav li a:hover {
+    color: #FEDF00;
+}
+.search {
+    float: right;
+    font-size: 1.5em;
+    color: #FFFFFF;
+    margin-right: 30px;
+}
+.cart a {
+    float: right;
+    font-size: 1.5em;
+    color: #FFFFFF;
+}
+.cart a:hover {
+    color: #FEDF00;
+    text-decoration: none;
+}
+.footer li a {
+    color: #FFFFFF;
+}
+.footer li a:hover {
+    color: #FEDF00;
+}
+.fa-angle-right {
+    padding-right: 5px;
+}
+.header-container {
+    background-color: #009FEE;
+}
+.header-container h1 {
+    color: #FFFFFF;
+    margin-top: 50px;
+    float: left;
+}
+.header-container ul {
+    margin-left: -15px;
+}
+.header-container .social-icons {
+    float: right;
+    margin-top: 35px;
+}
+.social-icons .fa {
+    color: #FFFFFF;
+}
+.social-icons .fa:hover {
+    color: #FEDF00;
+}
+.logo img {
+    width: 100%;
+}
+.logo {
+    margin-top: 20px;
+}
+.footer .social-icons {
+    float: right;
+}
+.social-icons li {
+    display: inline-block;
+    list-style: none;
+    font-size: 2em;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 15px;
+}
+.main-carousel img{
+    width: 100%;
+    margin-top: -20px;
+}
+.main-image img{
+    width: 100%;
+    margin-top: -20px;
+}
+.footer {
+    background-color: #009FEE;
+    color: #FFFFFF;
+}
+.footer li {
+    list-style: none;
+}
+.promotional img {
+    width: 100%;
+}
+.promo-block .img-overlay {
+    position: absolute;
+    /* add border */
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+}
+.promo-block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.promo-block .img-overlay h3, .promo-block .img-overlay p {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #FFFFFF;
+}
+.instagram .image-container img {
+    display: inline-block;
+}
+.text-content img.right {
+    float: right;
+    max-width: 500px;
+    width: 100%;
+    padding-left: 10px;
+}
+.text-content img.left {
+    float: left;
+    padding-right: 10px;
+    max-width: 500px;
+}
+.text-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.footer-brand ul {
+    margin-top: 25px;
+}
