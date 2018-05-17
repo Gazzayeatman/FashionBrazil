@@ -75,7 +75,7 @@ class WC_Dynamic_Gallery_Icon_Styles_Tab extends WC_Dynamic_Gallery_Admin_UI
 		
 		$tab_data = array( 
 			'name'				=> 'gallery-icon-styles',
-			'label'				=> __( 'Icon Styles', 'woo_dgallery' ),
+			'label'				=> __( 'Icon Styles', 'woocommerce-dynamic-gallery' ),
 			'callback_function'	=> 'wc_dgallery_icon_styles_tab_manager',
 		);
 		

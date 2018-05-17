@@ -17,6 +17,17 @@ if ( !defined('ABSPATH') )
  */
 global $post_type, $post_type_object, $post;
 
+if ( is_multisite() ) {
+	add_action( 'admin_footer', '_admin_notice_post_locked' );
+} else {
+	$check_users = get_users( array( 'fields' => 'ID', 'number' => 2 ) );
+
+	if ( count( $check_users ) > 1 )
+		add_action( 'admin_footer', '_admin_notice_post_locked' );
+
+	unset( $check_users );
+}
+
 wp_enqueue_script('post');
 $_wp_editor_expand = $_content_editor_dfw = false;
 
@@ -582,7 +593,7 @@ if ( has_filter( 'pre_get_shortlink' ) || has_filter( 'get_shortlink' ) ) {
 	$shortlink = wp_get_shortlink($post->ID, 'post');
 
 	if ( !empty( $shortlink ) && $shortlink !== $permalink && $permalink !== home_url('?page_id=' . $post->ID) ) {
-    	$sample_permalink_html .= '<input id="shortlink" type="hidden" value="' . esc_attr($shortlink) . '" /><a href="#" class="button button-small" onclick="prompt(&#39;URL:&#39;, jQuery(\'#shortlink\').val()); return false;">' . __('Get Shortlink') . '</a>';
+		$sample_permalink_html .= '<input id="shortlink" type="hidden" value="' . esc_attr( $shortlink ) . '" /><button type="button" class="button button-small" onclick="prompt(&#39;URL:&#39;, jQuery(\'#shortlink\').val());">' . __( 'Get Shortlink' ) . '</button>';
 	}
 }
 
@@ -628,6 +639,7 @@ if ( post_type_supports($post_type, 'editor') ) {
 		'resize' => false,
 		'wp_autoresize_on' => $_wp_editor_expand,
 		'add_unload_trigger' => false,
+		'wp_keep_scroll_position' => ! $is_IE,
 	),
 ) ); ?>
 <table id="post-status-info"><tbody><tr>

@@ -30,18 +30,15 @@ class WC_Dynamic_Gallery_Admin_UI
 	 * @var string
 	 * You must change to correct plugin name that you are working
 	 */
-	public $plugin_name = 'woo_dynamic_gallery';
 
-	public $google_api_key_option = 'woo_dynamic_gallery_google_api_key';
-
-	public $toggle_box_open_option = 'woo_dynamic_gallery_toggle_box_open';
-
-	public $is_free_plugin = true;
-
-	public $version_transient = 'a3rev_woo_dgallery_update_info';
-
-	public $plugin_option_key = 'a3rev_woo_dgallery_plugin';
-
+	public $framework_version      = '2.0.2';
+	public $plugin_name            = WOO_DYNAMIC_GALLERY_KEY;
+	public $plugin_path            = WOO_DYNAMIC_GALLERY_NAME;
+	public $google_api_key_option  = WOO_DYNAMIC_GALLERY_KEY . '_google_api_key';
+	public $toggle_box_open_option = WOO_DYNAMIC_GALLERY_KEY . '_toggle_box_open';
+	public $version_transient      = WOO_DYNAMIC_GALLERY_KEY . '_licinfo';
+	public $is_free_plugin         = true;
+	
 	public $support_url = 'https://wordpress.org/support/plugin/woocommerce-dynamic-gallery/';
 
 
@@ -106,14 +103,14 @@ class WC_Dynamic_Gallery_Admin_UI
 	 */
 	public function get_premium_video_data() {
 		$premium_video_data = array(
-				'box_title'    => __( 'Premium Version Enhanced Features', 'woo_dgallery' ),
+				'box_title'    => __( 'Premium Version Enhanced Features', 'woocommerce-dynamic-gallery' ),
 				'image_url'    => WOO_DYNAMIC_GALLERY_IMAGES_URL. '/video.jpg',
 				'video_url'    => 'https://www.youtube.com/embed/9dGw-ORfMIk?version=3&autoplay=1',
-				'left_title'   => __( 'Premium Version Enhanced Features', 'woo_dgallery' ),
-				'left_text'    => __( 'WooCommerce Dynamic Gallery Premium', 'woo_dgallery' )
-									. "\n\n" . __( 'Quick Video showing the main (not all) enhanced features that are built into the WooCommerce Dynamic Gallery Premium version', 'woo_dgallery' ),
-				'right_title'  => __( 'Developer Support and Premium Features', 'woo_dgallery' ),
-				'right_text'   => __( 'Limited Time Offer. Purchase the Premium Version Lifetime License. That is a Lifetime of maintenance updates, feature upgrades and developer support for a once only fee. Offer ending soon.', 'woo_dgallery' )
+				'left_title'   => __( 'Premium Version Enhanced Features', 'woocommerce-dynamic-gallery' ),
+				'left_text'    => __( 'WooCommerce Dynamic Gallery Premium', 'woocommerce-dynamic-gallery' )
+									. "\n\n" . __( 'Quick Video showing the main (not all) enhanced features that are built into the WooCommerce Dynamic Gallery Premium version', 'woocommerce-dynamic-gallery' ),
+				'right_title'  => __( 'Developer Support and Premium Features', 'woocommerce-dynamic-gallery' ),
+				'right_text'   => __( 'Limited Time Offer. Purchase the Premium Version Lifetime License. That is a Lifetime of maintenance updates, feature upgrades and developer support for a once only fee. Offer ending soon.', 'woocommerce-dynamic-gallery' )
 									. "\n\n" . '<a target="_blank" href="'.$this->pro_plugin_page_url.'" class="button-primary">' . __( 'Get Premium Features and Support', '' ) . '</a>',
 			);
 
@@ -262,10 +259,10 @@ class WC_Dynamic_Gallery_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function upgrade_top_message( $echo = false, $setting_id = '' ) {
 		$upgrade_top_message = sprintf( '<div class="pro_feature_top_message">' 
-			. __( 'Advanced Settings - Upgrade to the <a href="%s" target="_blank">%s License</a> to activate these settings.', 'woo_dgallery' ) 
+			. __( 'Advanced Settings - Upgrade to the <a href="%s" target="_blank">%s License</a> to activate these settings.', 'woocommerce-dynamic-gallery' ) 
 			. '</div>'
 			, apply_filters( $this->plugin_name . '_' . $setting_id . '_pro_plugin_page_url', apply_filters( $this->plugin_name . '_pro_plugin_page_url', $this->pro_plugin_page_url ) )
-			, apply_filters( $this->plugin_name . '_' . $setting_id . '_pro_version_name', apply_filters( $this->plugin_name . '_pro_version_name', __( 'Pro Version', 'woo_dgallery' ) ) )
+			, apply_filters( $this->plugin_name . '_' . $setting_id . '_pro_version_name', apply_filters( $this->plugin_name . '_pro_version_name', __( 'Pro Version', 'woocommerce-dynamic-gallery' ) ) )
 		);
 
 		$upgrade_top_message = apply_filters( $this->plugin_name . '_upgrade_top_message', $upgrade_top_message, $setting_id );
@@ -315,26 +312,26 @@ class WC_Dynamic_Gallery_Admin_UI
 			$transient_timeout = '_transient_timeout_' . $this->version_transient;
 			$timeout = get_option( $transient_timeout, false );
 			if ( false === $timeout ) {
-				$version_message = __( 'You should check now to see if have any new version is available', 'woo_dgallery' );
+				$version_message = __( 'You should check now to see if have any new version is available', 'woocommerce-dynamic-gallery' );
 			} elseif ( 'cannot_connect_api' == $version_transient ) {
-				$version_message = sprintf( __( 'Connection Failure! Please try again. If this issue persists please create a support request on the plugin <a href="%s" target="_blank">a3rev support forum</a>.', 'woo_dgallery' ), $this->support_url );
+				$version_message = sprintf( __( 'Connection Failure! Please try again. If this issue persists please create a support request on the plugin <a href="%s" target="_blank">a3rev support forum</a>.', 'woocommerce-dynamic-gallery' ), $this->support_url );
 			} else {
 				$version_info = explode( '||', $version_transient );
 				if ( FALSE !== stristr( $version_transient, '||' )
 					&& is_array( $version_info )
 					&& isset( $version_info[1] ) && $version_info[1] == 'valid'
-					&& version_compare( get_option('a3rev_woo_dgallery_lite_version') , $version_info[0], '<' ) ) {
+					&& version_compare( WOO_DYNAMIC_GALLERY_VERSION , $version_info[0], '<' ) ) {
 
-						$version_message = sprintf( __( 'There is a new version <span class="a3rev-ui-new-plugin-version">%s</span> available, <a href="%s" target="_blank">update now</a> or download direct from <a href="%s" target="_blank">My Account</a> on a3rev.com', 'woo_dgallery' ),
+						$version_message = sprintf( __( 'There is a new version <span class="a3rev-ui-new-plugin-version">%s</span> available, <a href="%s" target="_blank">update now</a> or download direct from <a href="%s" target="_blank">My Account</a> on a3rev.com', 'woocommerce-dynamic-gallery' ),
 							$version_info[0],
-							wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' . WOO_DYNAMIC_GALLERY_NAME ), 'upgrade-plugin_' . WOO_DYNAMIC_GALLERY_NAME ),
+							wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' . $this->plugin_path ), 'upgrade-plugin_' . $this->plugin_path ),
 							'https://a3rev.com/my-account/downloads/'
 						);
 				}
 			}
 
 		} else {
-			$version_message = __( 'You should check now to see if have any new version is available', 'woo_dgallery' );
+			$version_message = __( 'You should check now to see if have any new version is available', 'woocommerce-dynamic-gallery' );
 		}
 
 		return $version_message;

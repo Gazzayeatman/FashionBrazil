@@ -1,30 +1,30 @@
-=== WooCommerce Dynamic Gallery  ===
+=== WooCommerce Dynamic Gallery ===
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce image gallery, WooCommerce, WooCommerce Product images, WooCommerce Product Gallery, WooCommerce Dynamic Gallery
-Requires at least: 4.1
-Tested up to: 4.7.1
-Stable tag: 2.3.3
+Requires at least: 4.5
+Tested up to: 4.9.4
+Stable tag: 2.5.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Bring your product pages and presentation alive with WooCommerce Dynamic Gallery. Beautifully.
 
-== Description ==
+== DESCRIPTION ==
 
 Science has proven that Product images have a massive impact on your stores conversion rates. WooCommerce Dynamic Gallery will bring your stores static image display to life.
 
 As soon as you install WooCommerce Dynamic Gallery your Product pages image gallery is transformed into a dynamic scrolling product gallery with thumbnails displayed in a single row slider.
 
 
-= Key Features =
+= KEY FEATURES =
 
 * The #1 Product Page image gallery for WooCommerce Products page.
-* First released July 2012 with 63 maintenance updates and feature upgrade versions released in 48 months (as at August 2nd 2016)
-* Full support for WordPress version 4.4 responsive images - srcset and size
+* First released July 2012 with 69 maintenance updates and feature upgrade versions released in 59 months (as at June 6th 2017)
+* Full support for WordPress responsive images - srcset and size
 * Fully integrated with WooCommerce Product Gallery
-* Full compatibility with WooCommerce version 2.6+ with backward compatibility to version 2.1
+* Full compatibility with WooCommerce version 3.0.7+ with backward compatibility to version 2.6
 
-= Product Gallery =
+= PRODUCT GALLERY =
 
 * Instantly applies Dynamic Gallery features to all WooCommerce Product Gallery images on install
 * Auto Converts your static product image galleries into a dynamic scrolling gallery
@@ -42,40 +42,39 @@ As soon as you install WooCommerce Dynamic Gallery your Product pages image gall
 * ZOOM | START SLIDE SHOW / STOP SLIDESHOW controls
 
 
-= Gallery Thumbnail Slider =
+= GALLERY THUMBNAIL SLIDER =
 
 * Gallery Thumbnails show in a single row slider under the Gallery
 * Option to set the number of thumbnails that are visible in the Thumbnail slider from 2 to 8.
 * Option to set Thumbnail auto don't show when there is only 1 image in the gallery
 * Thumbnails auto scale to size in smaller screens
 
-= Things to know =
+= THINGS TO KNOW =
 
 * Dynamic Gallery admin panel is found in the WooCommerce submenu on your wp-admin page
 * Dynamic Gallery is found on the WooCommerce Product Data meta on each products edit page
 * Thumbnails dimensions are set from the WooCommerce > Settings > Products > Display - Product Images - Product Thumbnail settings
 * Translation ready and fully compatible with WPMU
 
- 
-= Localization =
 
-* English (default) - always include.
-* .po file (woo_dgallery.po) in languages folder for translations.
-* Your translation? Please do yours and [send it to us](http://a3rev.com/contact-us-page/) We'll acknowledge your work and link to your site.
-Please [Contact us](http://a3rev.com/contact-us-page/) if you'd like to provide a translation or an update.
+= PREMIUM VERSION =
 
-= Plugins resources =
+There is a [Premium Version](http://a3rev.com/shop/woocommerce-dynamic-gallery/) of WooCommerce Dynamic Gallery available if you find you want more features than are available in the free version
 
-[Home Page](http://a3rev.com/shop/woocommerce-dynamic-gallery/)
+= CONTRIBUTE =
+
+When you download WooCommerce Dynamic Gallery, you join our the a3rev Software community. Regardless of if you are a WordPress beginner or experienced developer if you are interested in contributing to the future development of WooCommerce Dynamic Gallery or any of our other plugins on Github head over to the WooCommerce Dynamic Gallery [GitHub Repository](https://github.com/a3rev/woocommerce-dynamic-gallery-lite) to find out how you can contribute.
+
+Want to add a new language to WooCommerce Dynamic Gallery! You can contribute via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/woocommerce-dynamic-gallery)
 
 
 == Installation ==
 
 = Minimum Requirements =
 
-* WordPress 4.1 or greater
-* PHP version 5.4.4 or greater
-* MySQL version 5.4 or greater
+* WordPress 4.5 or greater
+* PHP version 5.5 or greater
+* MySQL version 5.5 or greater
 
 = Automatic installation =
 
@@ -94,20 +93,26 @@ The manual installation method involves downloading our plugin and uploading it 
 
 == Screenshots ==
 
-1. WooCommerce Dynamic Gallery
+1. WooCommerce Dynamic Gallery replaces the default WooCommerce Gallery
+2. Zoom feature - opens images at full size
+3. Dynamic Gallery Meta Box is added to WooCommerce Product Data menu
+4. In plugin style and layout options - no coding required
 
 
 == Usage ==
 
-1. WP admin > WooCommerce > Dynamic Gallery
+1. Go to WordPress admin > WooCommerce menu > Dynamic Gallery menu
 
-2. Set the Width in px of the image gallery to match your theme.
+2. On the Settings tab activate the gallery and tweak settings as required
 
-3. Set Thumbnail dimensions and style thumbnail borders
+3. On the Gallery Style tab set layout, style and features of your product gallery 
 
-4. Save your changes.
+4. On the Icon Styles menu style your gallery icons
 
-5. Have fun.
+5. On any product edit page on the WooCommerce Product Data menu go to the Dynamic gallery menu and set the way the gallery works for that product
+
+6. Enjoy
+
 
 == Frequently Asked Questions ==
 
@@ -118,6 +123,54 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.5.2 - 2018/02/13 =
+* Maintenance Update. Under the bonnet tweaks to keep your plugin running smoothly and is the foundation for new features to be developed this year 
+* Framework - Update a3rev Plugin Framework to version 2.0.2
+* Framework - Add Framework version for all style and script files
+* Tweak - Update for full compatibility with a3rev Dashboard plugin
+* Tweak - Change OLD thumbnail image name shop_thumbnail to woocommerce_thumbnail for compatibility with WC 3.3.0 . Backward compatibility with WC 3.2.6
+* Tweak - Change OLD thumbnail image name shop_single to woocommerce_single for compatibility with WC 3.3.0 . Backward compatibility with WC 3.2.6
+* Tweak - Update WooCommerce Display Settings URL to link to new WooCommerce Customizer menu URL on WC v 3.3.0
+* Tweak - Test for compatibility with WordPress 4.9.4
+* Tweak - Test for compatibility with WooCommerce 3.3.1
+
+= 2.5.1 - 2017/11/15 =
+* Fixed - Show WC dynamic gallery images on frontend if feature image as part of gallery
+* Tweak - Tested for compatibility with WordPress 4.9
+
+= 2.5.0 - 2017/11/06 =
+* Feature Upgrade. This feature upgrade adds the ability to set the source of images that populate the Dynamic gallery.
+* Feature - Add new Dynamic Gallery Image Source option support for show the slideshow on frontend from Attached Images of Product or WC Product Images
+* Feature - Add separate Dynamic Gallery Image Source option to Dynamic Gallery Meta menu on Edit Product page so that can override global option
+* Feature - Added Global Reset for this feature from the settings page option box
+* Tweak - Add new Dynamic Gallery Image Source Options box on the plugins settings page 
+* Tweak - Added Image source options to the WooCommerce Product Data - Dynamic Gallery menu on each product edit page
+* Tweak - Tested for compatibility with WooCommerce 3.2.3
+* Tweak - Tested for compatibility with WordPress 4.8.3
+
+= 2.4.1 - 2017/10/13 =
+* Tweak - Tested for compatibility with WooCommerce 3.2.0
+* Tweak - Tested for compatibility with WordPress 4.8.2
+* Tweak - Added support for the new WC 'tested up to' feature to show this plugin has been tested compatible with WC updates
+
+= 2.4.0 - 2017/06/06 =
+* Feature - Launched WooCommerce Dynamic Gallery public Repository
+* Feature - WordPress Translation activation. Add text domain declaration in file header
+* Tweak - Tested for compatibility with WordPress major version 4.8.0
+* Tweak - Include bootstrap modal script into plugin framework
+* Tweak - Update a3rev plugin framework to latest version
+
+= 2.3.5 - 2017/05/18 =
+* Tweak - Tested for full compatibility with WordPress version 4.7.5
+* Tweak - Tested for full compatibility with WooCommerce version 3.0.7
+
+= 2.3.4 - 2017/04/11 =
+* Tweak - Full compatibility with WC version 3.0.1 with backward compatibility to WC version 2.6.0
+* Tweak - Change call direct to Product properties with new function that are defined on WC v3.0
+* Tweak - Called action for save data of plugin after WC data is saved on new CRUD
+* Tweak - Change priority for save_post action so that it is called after WooCommerce save the product data, to get the correct data on WC v3.0
+* Tweak - Tested for full compatibility with WordPress version 4.7.3
 
 = 2.3.3 - 2017/01/13 =
 * Tweak - Change global $$variable to global ${$variable} for compatibility with PHP 7.0 
@@ -574,6 +627,27 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.5.2 =
+Maintenance Update. This version updates the Plugin Framework to v 2.0.2, adds full compatibility with a3rev Dashboard, WordPress v 4.9.4 and WooCoomerce v 3.3.1
+
+= 2.5.1 = 
+Maintenance Update. 1 Teak and 1 bug fix for full compatibility with WordPress 4.9
+
+= 2.5.0 =
+Feature Upgrade. In this release we add the ability to define where images are sourced from for the Gallery, either all images uploaded to the post or just the images that have been uploaded to Product Image gallery.
+
+= 2.4.1 =
+Maintenance Upgrade. Tweaks for compatibility with WooCommerce 3.2.0 and WordPress 4.8.2
+
+= 2.4.0 =
+Maintenance Update. 2 new features plus 2 code tweaks for compatibility with WordPress major version 4.8.0 and launch on Github public repo
+
+= 2.3.5 =
+Minor Maintenance Update. Tested for Compatibility with WooCommerce 3.0.7 and WordPress 4.7.5
+
+= 2.3.4 =
+Maintenance Update. Code tweaks for full compatibility with WooCommerce V 3.0.1 and backwards to V 2.6.0 and WordPress V 4.7.3
 
 = 2.3.3 =
 Maintenance Update. 3 tweaks for full compatibility with WordPress 4.7.1, WooCommerce 2.6.12 and PHP 7.0

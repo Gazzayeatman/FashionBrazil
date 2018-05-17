@@ -75,7 +75,7 @@ class WC_Dynamic_Gallery_Style_Tab extends WC_Dynamic_Gallery_Admin_UI
 		
 		$tab_data = array( 
 			'name'				=> 'gallery-style',
-			'label'				=> __( 'Gallery Style', 'woo_dgallery' ),
+			'label'				=> __( 'Gallery Style', 'woocommerce-dynamic-gallery' ),
 			'callback_function'	=> 'wc_dgallery_style_tab_manager',
 		);
 		

@@ -5,20 +5,22 @@
  * Uninstalling deletes options, tables, and pages.
  *
  */
-if( ! defined( 'WP_UNINSTALL_PLUGIN' ) )
+if( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) 
 	exit();
 
+$plugin_key = 'woo_dynamic_gallery';
+
 // Delete Google Font
-delete_option('woo_dynamic_gallery_google_api_key' . '_enable');
-delete_transient('woo_dynamic_gallery_google_api_key' . '_status');
-delete_option('woo_dynamic_gallery' . '_google_font_list');
+delete_option( $plugin_key . '_google_api_key' . '_enable' );
+delete_transient( $plugin_key . '_google_api_key' . '_status' );
+delete_option( $plugin_key . '_google_font_list' );
 
-if ( get_option('wc_dgallery_lite_clean_on_deletion') == 'yes' ) {
-	delete_option('woo_dynamic_gallery_google_api_key');
-    delete_option('woo_dynamic_gallery_toggle_box_open');
-    delete_option('woo_dynamic_gallery' . '-custom-boxes');
+if ( get_option( $plugin_key . '_clean_on_deletion' ) == 'yes' ) {
+	delete_option( $plugin_key . '_google_api_key' );
+	delete_option( $plugin_key . '_toggle_box_open' );
+	delete_option( $plugin_key . '-custom-boxes' );
 
-    delete_metadata( 'user', 0, 'woo_dynamic_gallery' . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
+	delete_metadata( 'user', 0,  $plugin_key . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
 
 	delete_option( 'wc_dgallery_product_gallery_width' );
 	delete_option( 'wc_dgallery_width_type' );
@@ -100,7 +102,7 @@ if ( get_option('wc_dgallery_lite_clean_on_deletion') == 'yes' ) {
 	delete_option( 'wc_dgallery_product_gallery_width_responsive' );
 	delete_option( 'wc_dgallery_product_gallery_width_fixed' );
 
-	delete_option('wc_dgallery_lite_clean_on_deletion');
+	delete_option( $plugin_key . '_clean_on_deletion' );
 
 	delete_post_meta_by_key('_actived_d_gallery');
 	delete_post_meta_by_key('_wc_dgallery_show_variation');

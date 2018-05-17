@@ -1,9 +1,9 @@
 === WooCommerce PayPal Express Checkout Payment Gateway ===
-Contributors: automattic, woothemes, akeda, dwainm, royho, allendav, slash1andy, woosteve, spraveenitpro, mikedmoore, fernashes, shellbeezy, danieldudzic, mikaey
+Contributors: automattic, woothemes, akeda, dwainm, royho, allendav, slash1andy, woosteve, spraveenitpro, mikedmoore, fernashes, shellbeezy, danieldudzic, mikaey, fullysupportedphil, dsmithweb, corsonr, bor0, zandyring
 Tags: ecommerce, e-commerce, commerce, woothemes, wordpress ecommerce, store, sales, sell, shop, shopping, cart, checkout, configurable, paypal
 Requires at least: 4.4
-Tested up to: 4.4
-Stable tag: 1.1.2
+Tested up to: 4.9.0
+Stable tag: 1.5.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,7 +31,7 @@ In the search field type "WooCommerce PayPal Express Checkout" and click Search 
 
 = Manual installation =
 
-The manual installation method involves downloading our plugin and uploading it to your webserver via your favourite FTP application. The
+The manual installation method involves downloading our plugin and uploading it to your webserver via your favorite FTP application. The
 WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
 = Updating =
@@ -77,6 +77,14 @@ If PayPal Express Checkout is the only enabled payment gateway and you want to r
 
 https://gist.github.com/mikejolley/ad2ecc286c9ad6cefbb7065ba6dfef48
 
+= Where can I contribute? =
+
+The GitHub repository for PayPal Express Checkout is here:
+
+https://github.com/woothemes/woocommerce-gateway-paypal-express-checkout
+
+Please use this to inform us about bugs, or make contributions via PRs.
+
 == Screenshots ==
 
 1. Click the "Click Here to Set Up Your PayPal Account" button. If you want to test before goes live, you can switch the Environment, above the button, to Sandbox.
@@ -85,55 +93,22 @@ https://gist.github.com/mikejolley/ad2ecc286c9ad6cefbb7065ba6dfef48
 
 == Changelog ==
 
-= 1.1.2 =
-* Fix - Make sure translations are loaded properly.
-* Fix - Added IPN (Instant Payment Notification) handler.
-* Fix - Make sure guest payment is enabled by default.
+= 1.5.4 - 2018-05-08 =
+* Add - Hook to make billing address not required `woocommerce_paypal_express_checkout_address_not_required` (bool).
+* Fix - Duplicate checkout settings when PP Credit option is enabled.
+* Fix - Impossible to open API credentials after saving Settings.
+* Fix - Prevent filtering if PPEC is not enabled.
+* Fix - Single Product checkout: Quantity being duplicated due to multiple AJAX calls.
+* Fix - When returning from PayPal, place order buttons says "proceed to payment".
+* Tweak - Default billing address to be required.
 
-= 1.1.1 =
-* Fixed fatal error prior to PHP 5.5 caused by passing empty() a non-variables.
+= 1.5.3 - 2018-03-28 =
+* Fix - wp_enqueue_media was not correctly loaded causing weird behavior with other parts of system wanting to use it.
+* Fix - Typo in activation hook.
 
-= 1.1.0 =
-* Improved flow after express checkout by removing billing and shipping fields and simply allowing shipping method selection.
-* Fix - Fixed in-context checkout to work after ajax cart reload.
-* Fix - Added missing 'large' button size.
-* Fix - Prevent double stock reduction when payment complete.
-* Fix - Allow PPE from pay page and don't use in-context checkout for PayPal Mark on checkout.
-* Fix - Increase timeout to 30 to prevent error #3.
-* Tweak - If the store owner decides to enable PayPal standard, respect that decision and remove EC from checkout screen.
-* Tweak - Change place order button to "continue to payment".
-* Tweak - Moved default button location to woocommerce_proceed_to_checkout hook.
-* Tweak - Improved button appearance and look alongside regular checkout button.
+= 1.5.2 - 2018-02-20 =
+* Tweak - Express checkout shouldn't display "Review your order before the payment".
+* Fix - Compatibility with Subscriptions and Checkout from Single Product page.
+* Fix - Make sure session object exists before use to prevent fatal error.
 
-= 1.0.4 =
-* Fix - Wrong section slug / tab after redirected from connect.woocommerce.com
-* Fix - Make sure to check if credentials were set in cart and checkout pages
-* Fix - Removed configuration of chipers to use for TLS
-
-= 1.0.3 =
-* Fix - Issue where missing rounding two decimal digits of tax causing transaction being refused
-* Fix - Issue where custom logo image URL is not saved
-
-= 1.0.2 =
-* Fix - Strip out HTML tags from item descriptions to prevent warning from PayPal
-* Fix - Issue of incorrect plugin's setting link from admin plugins page when using WooCommerce 2.6
-* Tweak - Make enabled option to default to true
-* Fix - Issue of missing help icon when plugin directory is not the same as plugin's slug.
-* Tweak - Add admin notice to setup / connect after plugin is activated.
-
-= 1.0.1 =
-* Fix - Make sure OpenSSL is installed with 1.0.1 as the minium required version, otherwise display warning
-* Fix - Make sure cURL transport is available for WP HTTP API, otherwise display warning
-* Fix - Unhandled certificate-style API credential
-* Fix - Fixed calculated tax and coupons data that sent over to PayPal
-* Fix - Fixed calculated shipping discount data that sent over to PayPal
-
-= 1.0.0 =
-* Initial stable release
-
-= 0.2.0 =
-* Fix - Add cancel link on checkout page when session for PPEC is active
-* Fix - In-context mini browser keeps spinning because failure xhr response is not handled properly
-
-= 0.1.0 =
-* Beta release
+[See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce-gateway-paypal-express-checkout/master/changelog.txt).

@@ -1,0 +1,42 @@
+@import "mixins.less";
+
+.a3-dynamic-metabox-panel-wrap {
+
+    .dgallery_images_container {
+
+        ul {
+            li.metabox-sortable-placeholder {
+                &:after {
+                    left: auto;
+                    right: 0;
+                }
+            }
+
+            ul.actions {
+                left: -8px;
+                right: auto;
+
+                li {
+                    float: left;
+                    margin: 0 2px 0 0;
+
+                    a {
+                        &.delete {
+                            &:before {
+                                left: auto;
+                                right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            li {
+                &.add, &.image, &.metabox-sortable-placeholder {
+                    float: right;
+                    margin: 9px 0 0 9px;
+                }
+            }
+        }
+    }
+}

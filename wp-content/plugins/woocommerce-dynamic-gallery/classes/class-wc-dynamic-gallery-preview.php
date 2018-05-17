@@ -92,9 +92,14 @@ class WC_Gallery_Preview_Display
         <div class="images" style="100%; margin:30px auto;">
           <div class="product_gallery">
             <?php
-			$shop_thumbnail  = wc_get_image_size( 'shop_thumbnail' );
-			$g_thumb_width   = $shop_thumbnail['width'];
-			$g_thumb_height  = $shop_thumbnail['height'];
+            if ( version_compare( WC_VERSION, '3.3.0', '<' ) ) {
+            	// bw compat. for less than WC 3.3.0
+				$woocommerce_thumbnail  = wc_get_image_size( 'shop_thumbnail' );
+			} else {
+				$woocommerce_thumbnail  = wc_get_image_size( 'woocommerce_thumbnail' );
+			}
+			$g_thumb_width   = $woocommerce_thumbnail['width'];
+			$g_thumb_height  = $woocommerce_thumbnail['height'];
 			$g_thumb_spacing = $woo_a3_gallery_settings[WOO_DYNAMIC_GALLERY_PREFIX.'thumb_spacing'];
 			if ( isset( $woo_a3_gallery_settings[WOO_DYNAMIC_GALLERY_PREFIX.'thumb_show_type'] ) ) {
 				$thumb_show_type = 'slider';
@@ -187,7 +192,7 @@ class WC_Gallery_Preview_Display
 			}
 
 			$popup_gallery = get_option( WOO_DYNAMIC_GALLERY_PREFIX.'popup_gallery' );
-			$zoom_label = __('ZOOM +', 'woo_dgallery');
+			$zoom_label = __('ZOOM +', 'woocommerce-dynamic-gallery' );
 			if ($popup_gallery == 'deactivate') {
 				$lightbox_class = '';
 				$zoom_label = '';
@@ -500,8 +505,8 @@ class WC_Gallery_Preview_Display
                             enable: true,
                             autostart: '.$g_auto.',
                             speed: '.$g_speed.'000,
-                            start_label: "'.__('START SLIDESHOW', 'woo_dgallery').'",
-                            stop_label: "'.__('STOP SLIDESHOW', 'woo_dgallery').'",
+                            start_label: "'.__('START SLIDESHOW', 'woocommerce-dynamic-gallery' ).'",
+                            stop_label: "'.__('STOP SLIDESHOW', 'woocommerce-dynamic-gallery' ).'",
 							zoom_label: "'.$zoom_label.'",
                             stop_on_scroll: true,
                             countdown_prefix: "(",

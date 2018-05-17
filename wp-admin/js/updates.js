@@ -94,6 +94,7 @@
 	 * @type {object} filesystemCredentials.ssh                Holds SSH credentials.
 	 * @type {string} filesystemCredentials.ssh.publicKey      The public key. Default empty string.
 	 * @type {string} filesystemCredentials.ssh.privateKey     The private key. Default empty string.
+	 * @type {string} filesystemCredentials.fsNonce            Filesystem credentials form nonce.
 	 * @type {bool}   filesystemCredentials.available          Whether filesystem credentials have been provided.
 	 *                                                         Default 'false'.
 	 */
@@ -108,6 +109,7 @@
 			publicKey:  '',
 			privateKey: ''
 		},
+		fsNonce: '',
 		available: false
 	};
 
@@ -181,7 +183,11 @@
 		if ( $notice.length ) {
 			$notice.replaceWith( $adminNotice );
 		} else {
-			$( '.wrap' ).find( '> h1' ).after( $adminNotice );
+			if ( 'customize' === pagenow ) {
+				$( '.customize-themes-notifications' ).append( $adminNotice );
+			} else {
+				$( '.wrap' ).find( '> h1' ).after( $adminNotice );
+			}
 		}
 
 		$document.trigger( 'wp-updates-notice-added' );
@@ -225,6 +231,7 @@
 		options.data = _.extend( data, {
 			action:          action,
 			_ajax_nonce:     wp.updates.ajaxNonce,
+			_fs_nonce:       wp.updates.filesystemCredentials.fsNonce,
 			username:        wp.updates.filesystemCredentials.ftp.username,
 			password:        wp.updates.filesystemCredentials.ftp.password,
 			hostname:        wp.updates.filesystemCredentials.ftp.hostname,
@@ -927,6 +934,17 @@
 		if ( 'themes-network' === pagenow ) {
 			$notice = $( '[data-slug="' + args.slug + '"]' ).find( '.update-message' ).removeClass( 'notice-error' ).addClass( 'updating-message notice-warning' ).find( 'p' );
 
+		} else if ( 'customize' === pagenow ) {
+
+			// Update the theme details UI.
+			$notice = $( '[data-slug="' + args.slug + '"].notice' ).removeClass( 'notice-large' );
+
+			$notice.find( 'h3' ).remove();
+
+			// Add the top-level UI, and update both.
+			$notice = $notice.add( $( '#customize-control-installed_theme_' + args.slug ).find( '.update-message' ) );
+			$notice = $notice.addClass( 'updating-message' ).find( 'p' );
+
 		} else {
 			$notice = $( '#update-theme' ).closest( '.notice' ).removeClass( 'notice-large' );
 
@@ -969,7 +987,18 @@
 			},
 			$notice, newText;
 
-		if ( 'themes-network' === pagenow ) {
+		if ( 'customize' === pagenow ) {
+			$theme = $( '.updating-message' ).siblings( '.theme-name' );
+
+			if ( $theme.length ) {
+
+				// Update the version number in the row.
+				newText = $theme.html().replace( response.oldVersion, response.newVersion );
+				$theme.html( newText );
+			}
+
+			$notice = $( '.theme-info .notice' ).add( wp.customize.control( 'installed_theme_' + response.slug ).container.find( '.theme' ).find( '.update-message' ) );
+		} else if ( 'themes-network' === pagenow ) {
 			$notice = $theme.find( '.update-message' );
 
 			// Update the version number in the row.
@@ -994,7 +1023,7 @@
 		$document.trigger( 'wp-theme-update-success', response );
 
 		// Show updated message after modal re-rendered.
-		if ( isModalOpen ) {
+		if ( isModalOpen && 'customize' !== pagenow ) {
 			$( '.theme-info .theme-author' ).after( wp.updates.adminNotice( updatedMessage ) );
 		}
 	};
@@ -1021,6 +1050,10 @@
 
 		if ( wp.updates.maybeHandleCredentialError( response, 'update-theme' ) ) {
 			return;
+		}
+
+		if ( 'customize' === pagenow ) {
+			$theme = wp.customize.control( 'installed_theme_' + response.slug ).container.find( '.theme' );
 		}
 
 		if ( 'themes-network' === pagenow ) {
@@ -1159,12 +1192,23 @@
 			return;
 		}
 
-		if ( $document.find( 'body' ).hasClass( 'full-overlay-active' ) ) {
-			$button = $( '.theme-install[data-slug="' + response.slug + '"]' );
-			$card   = $( '.install-theme-info' ).prepend( $message );
+		if ( 'customize' === pagenow ) {
+			if ( $document.find( 'body' ).hasClass( 'modal-open' ) ) {
+				$button = $( '.theme-install[data-slug="' + response.slug + '"]' );
+				$card   = $( '.theme-overlay .theme-info' ).prepend( $message );
+			} else {
+				$button = $( '.theme-install[data-slug="' + response.slug + '"]' );
+				$card   = $button.closest( '.theme' ).addClass( 'theme-install-failed' ).append( $message );
+			}
+			wp.customize.notifications.remove( 'theme_installing' );
 		} else {
-			$card   = $( '[data-slug="' + response.slug + '"]' ).removeClass( 'focus' ).addClass( 'theme-install-failed' ).append( $message );
-			$button = $card.find( '.theme-install' );
+			if ( $document.find( 'body' ).hasClass( 'full-overlay-active' ) ) {
+				$button = $( '.theme-install[data-slug="' + response.slug + '"]' );
+				$card   = $( '.install-theme-info' ).prepend( $message );
+			} else {
+				$card   = $( '[data-slug="' + response.slug + '"]' ).removeClass( 'focus' ).addClass( 'theme-install-failed' ).append( $message );
+				$button = $card.find( '.theme-install' );
+			}
 		}
 
 		$button
@@ -1178,7 +1222,7 @@
 	};
 
 	/**
-	 * Sends an Ajax request to the server to install a theme.
+	 * Sends an Ajax request to the server to delete a theme.
 	 *
 	 * @since 4.6.0
 	 *
@@ -1706,6 +1750,7 @@
 			wp.updates.filesystemCredentials.ftp.connectionType = $( 'input[name="connection_type"]:checked' ).val();
 			wp.updates.filesystemCredentials.ssh.publicKey      = $( '#public_key' ).val();
 			wp.updates.filesystemCredentials.ssh.privateKey     = $( '#private_key' ).val();
+			wp.updates.filesystemCredentials.fsNonce            = $( '#_fs_nonce' ).val();
 			wp.updates.filesystemCredentials.available          = true;
 
 			// Unlock and invoke the queue.
@@ -1992,7 +2037,7 @@
 		 *
 		 * @param {Event} event Event interface.
 		 */
-		$bulkActionForm.on( 'click', '[type="submit"]', function( event ) {
+		$bulkActionForm.on( 'click', '[type="submit"]:not([name="clear-recent-list"])', function( event ) {
 			var bulkAction    = $( event.target ).siblings( 'select' ).val(),
 				itemsSelected = $bulkActionForm.find( 'input[name="checked[]"]:checked' ),
 				success       = 0,
@@ -2287,6 +2332,16 @@
 			$( 'input.wp-filter-search' ).trigger( 'input' );
 		} );
 
+		/** 
+		 * Trigger a search event when the "Try Again" button is clicked. 
+		 * 
+		 * @since 4.9.0
+		 */ 
+		$document.on( 'click', '.try-again', function( event ) { 
+			event.preventDefault(); 
+			$pluginInstallSearch.trigger( 'input' ); 
+		} );
+
 		/**
 		 * Trigger a search event when the search type gets changed.
 		 *
@@ -2382,7 +2437,7 @@
 				return;
 			}
 
-			if ( 'undefined' === typeof message.action ) {
+			if ( ! message || 'undefined' === typeof message.action ) {
 				return;
 			}
 

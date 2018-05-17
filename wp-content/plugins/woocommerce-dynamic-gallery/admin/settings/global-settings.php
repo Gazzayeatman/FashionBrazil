@@ -78,9 +78,9 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
 		$this->subtab_init();
 		
 		$this->form_messages = array(
-				'success_message'	=> __( 'Dynamic Gallery Settings successfully saved.', 'woo_dgallery' ),
-				'error_message'		=> __( 'Error: Dynamic Gallery Settings can not save.', 'woo_dgallery' ),
-				'reset_message'		=> __( 'Dynamic Gallery Settings successfully reseted.', 'woo_dgallery' ),
+				'success_message'	=> __( 'Dynamic Gallery Settings successfully saved.', 'woocommerce-dynamic-gallery' ),
+				'error_message'		=> __( 'Error: Dynamic Gallery Settings can not save.', 'woocommerce-dynamic-gallery' ),
+				'reset_message'		=> __( 'Dynamic Gallery Settings successfully reseted.', 'woocommerce-dynamic-gallery' ),
 			);
 
 		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_end', array( $this, 'include_script' ) );
@@ -136,9 +136,13 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
 			delete_option( WOO_DYNAMIC_GALLERY_PREFIX.'reset_feature_image_activate' );
 			WC_Dynamic_Gallery_Functions::reset_auto_feature_image_activate();			
 		}
-		if ( ( isset( $_POST['bt_save_settings'] ) || isset( $_POST['bt_reset_settings'] ) ) && get_option( 'wc_dgallery_clean_on_deletion' ) == 'no'  )  {
+		if ( isset( $_POST['bt_save_settings'] ) && isset( $_POST[WOO_DYNAMIC_GALLERY_PREFIX.'reset_image_source'] ) ) {
+			delete_option( WOO_DYNAMIC_GALLERY_PREFIX.'reset_image_source' );
+			WC_Dynamic_Gallery_Functions::reset_image_source();			
+		}
+		if ( ( isset( $_POST['bt_save_settings'] ) || isset( $_POST['bt_reset_settings'] ) ) && get_option( $this->plugin_name . '_clean_on_deletion' ) == 'no'  )  {
 			$uninstallable_plugins = (array) get_option('uninstall_plugins');
-			unset($uninstallable_plugins[WOO_DYNAMIC_GALLERY_NAME]);
+			unset($uninstallable_plugins[ $this->plugin_path ]);
 			update_option('uninstall_plugins', $uninstallable_plugins);
 		}
 	}
@@ -168,7 +172,7 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
 		
 		$subtab_data = array( 
 			'name'				=> 'global-settings',
-			'label'				=> __( 'Settings', 'woo_dgallery' ),
+			'label'				=> __( 'Settings', 'woocommerce-dynamic-gallery' ),
 			'callback_function'	=> 'wc_dgallery_global_settings_form',
 		);
 		
@@ -208,11 +212,18 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function init_form_fields() {
 
+		$wc_version = get_option( 'woocommerce_version', '1.0' );
+
+		$wc_display_settings_url = admin_url( 'customize.php?autofocus[panel]=woocommerce&autofocus[section]=woocommerce_product_images' );
+		if ( version_compare( $wc_version, '3.3.0', '<' ) ) {
+			$wc_display_settings_url = admin_url( 'admin.php?page=wc-settings&tab=products&section=display' );
+		}
+
   		// Define settings
      	$this->form_fields = apply_filters( $this->option_name . '_settings_fields', array(
 
 			array(
-            	'name' 		=> __( 'Plugin Framework Global Settings', 'woo_dgallery' ),
+            	'name' 		=> __( 'Plugin Framework Global Settings', 'woocommerce-dynamic-gallery' ),
             	'id'		=> 'plugin_framework_global_box',
                 'type' 		=> 'heading',
                 'first_open'=> true,
@@ -220,73 +231,160 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
            	),
 
            	array(
-           		'name'		=> __( 'Customize Admin Setting Box Display', 'woo_dgallery' ),
-           		'desc'		=> __( 'By default each admin panel will open with all Setting Boxes in the CLOSED position.', 'woo_dgallery' ),
+           		'name'		=> __( 'Customize Admin Setting Box Display', 'woocommerce-dynamic-gallery' ),
+           		'desc'		=> __( 'By default each admin panel will open with all Setting Boxes in the CLOSED position.', 'woocommerce-dynamic-gallery' ),
                 'type' 		=> 'heading',
            	),
            	array(
 				'type' 		=> 'onoff_toggle_box',
 			),
 			array(
-           		'name'		=> __( 'Google Fonts', 'woo_dgallery' ),
-           		'desc'		=> __( 'By Default Google Fonts are pulled from a static JSON file in this plugin. This file is updated but does not have the latest font releases from Google.', 'woo_dgallery' ),
+           		'name'		=> __( 'Google Fonts', 'woocommerce-dynamic-gallery' ),
+           		'desc'		=> __( 'By Default Google Fonts are pulled from a static JSON file in this plugin. This file is updated but does not have the latest font releases from Google.', 'woocommerce-dynamic-gallery' ),
                 'type' 		=> 'heading',
            	),
            	array(
                 'type' 		=> 'google_api_key',
            	),
            	array(
-            	'name' 		=> __( 'House Keeping', 'woo_dgallery' ),
+            	'name' 		=> __( 'House Keeping', 'woocommerce-dynamic-gallery' ),
                 'type' 		=> 'heading',
             ),
 			array(
-				'name' 		=> __( 'Clean Up On Deletion', 'woo_dgallery' ),
-				'desc' 		=> __( 'On deletion (not deactivate) the plugin will completely remove all tables and data it created, leaving no trace it was ever here.', 'woo_dgallery'),
-				'id' 		=> 'wc_dgallery_lite_clean_on_deletion',
+				'name' 		=> __( 'Clean Up On Deletion', 'woocommerce-dynamic-gallery' ),
+				'desc' 		=> __( 'On deletion (not deactivate) the plugin will completely remove all tables and data it created, leaving no trace it was ever here.', 'woocommerce-dynamic-gallery' ),
+				'id' 		=> $this->plugin_name . '_clean_on_deletion',
 				'type' 		=> 'onoff_checkbox',
 				'default'	=> 'no',
 				'separate_option'	=> true,
 				'free_version'		=> true,
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
-				'checked_label'		=> __( 'ON', 'woo_dgallery' ),
-				'unchecked_label' 	=> __( 'OFF', 'woo_dgallery' ),
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
 			),
 
 			array(
-				'name' => __('Dynamic Gallery Activation', 'woo_dgallery'),
+				'name' => __('Dynamic Gallery Activation', 'woocommerce-dynamic-gallery' ),
 				'type' => 'heading',
-				'desc' => __( 'When activated Dynamic Gallery function is applied to each products WooCommerce Default gallery images. Dynamic Gallery menu is added to each product pages WooCommerce Product Data menu. The WooCommerce Product Gallery is converted to Dynamic Product Gallery.', 'woo_dgallery' ),
+				'desc' => __( 'When activated Dynamic Gallery function is applied to each products WooCommerce Default gallery images. Dynamic Gallery menu is added to each product pages WooCommerce Product Data menu. The WooCommerce Product Gallery is converted to Dynamic Product Gallery.', 'woocommerce-dynamic-gallery' ),
 				'id'     => 'wc_dgallery_global_activation_box',
 				'is_box' => true,
 			),
 			array(
-				'name' 		=> __( 'Gallery Activation Default', 'woo_dgallery' ),
-				'desc' 		=> __( 'Changes to the default Gallery activation does NOT apply to existing products. It will be applied to all products created after changing the default.', 'woo_dgallery' ),
+				'name' 		=> __( 'Gallery Activation Default', 'woocommerce-dynamic-gallery' ),
+				'desc' 		=> __( 'Changes to the default Gallery activation does NOT apply to existing products. It will be applied to all products created after changing the default.', 'woocommerce-dynamic-gallery' ),
 				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'activate',
 				'default'	=> 'yes',
 				'type' 		=> 'onoff_checkbox',
 				'free_version'		=> true,
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
-				'checked_label'		=> __( 'ON', 'woo_dgallery' ),
-				'unchecked_label' 	=> __( 'OFF', 'woo_dgallery' ),
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
 			),
 			array(  
-				'name' 		=> __( 'Reset Activation To Default', 'woo_dgallery' ),
-				'desc' 		=> __( 'Switch ON and Save Changes will reset ALL existing and future products to the Gallery Activation Default that you have set above.', 'woo_dgallery' ),
+				'name' 		=> __( 'Reset Activation To Default', 'woocommerce-dynamic-gallery' ),
+				'desc' 		=> __( 'Switch ON and Save Changes will reset ALL existing and future products to the Gallery Activation Default that you have set above.', 'woocommerce-dynamic-gallery' ),
 				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'reset_galleries_activate',
 				'default'	=> 'no',
 				'type' 		=> 'onoff_checkbox',
 				'free_version'		=> true,
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
-				'checked_label'		=> __( 'ON', 'woo_dgallery' ),
-				'unchecked_label' 	=> __( 'OFF', 'woo_dgallery' ),
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
 			),
 
 			array(
-            	'name' 		=> __( "VARIATION GALLERIES SUPER POWERS", 'woo_dgallery' ),
+				'name' => __('Dynamic Gallery Image Source Options', 'woocommerce-dynamic-gallery' ),
+				'type' => 'heading',
+				'desc' => __( 'Set where Dynamic Gallery should get its images from. The option set here applies to all products but can be changed on a product by product basis from the Dynamic Gallery menu on Product data meta box.', 'woocommerce-dynamic-gallery' ),
+				'id'     => 'wc_dgallery_image_source_box',
+				'is_box' => true,
+			),
+			array(
+				'name' 		=> __( 'Attached Images', 'woocommerce-dynamic-gallery' ),
+				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX . 'image_source',
+				'type' 		=> 'onoff_radio',
+				'free_version'		=> true,
+				'default' 	=> 'wc_gallery',
+				'onoff_options' => array(
+					array(
+						'val' 				=> 'attached',
+						'text' 				=> __( 'Switch ON will show all images uploaded to the post in the Dynamic Gallery', 'woocommerce-dynamic-gallery' ),
+						'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ) ,
+						'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ) ,
+					),
+
+				),
+			),
+			array(
+				'name' 		=> __( 'WC Product Images', 'woocommerce-dynamic-gallery' ),
+				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX . 'image_source',
+				'type' 		=> 'onoff_radio',
+				'free_version'		=> true,
+				'default' 	=> 'wc_gallery',
+				'onoff_options' => array(
+					array(
+						'val' 				=> 'wc_gallery',
+						'text' 				=> __( "Switch ON and Dynamic gallery will get only those images that have been uploaded to the WC Product images", 'woocommerce-dynamic-gallery' ),
+						'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ) ,
+						'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ) ,
+					),
+
+				),
+			),
+			array(  
+				'name' 		=> __( 'Reset To Default', 'woocommerce-dynamic-gallery' ),
+				'desc' 		=> __( 'Switch ON and Save Changes will reset ALL products to get images from the option that is set above.', 'woocommerce-dynamic-gallery' ),
+				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'reset_image_source',
+				'default'	=> 'no',
+				'type' 		=> 'onoff_checkbox',
+				'free_version'		=> true,
+				'checked_value'		=> 'yes',
+				'unchecked_value'	=> 'no',
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
+			),
+
+			array(
+				'name' => __( 'Product Feature Image', 'woocommerce-dynamic-gallery' ),
+				'type' => 'heading',
+				'desc' => '<ul>
+<li>* '.__( 'ON this option and the Product Image (featured image) will show as the first image in the gallery without having to upload it to the Gallery.', 'woocommerce-dynamic-gallery' ).'</li>
+<li>* '.__( 'OFF and the uploaded Product Image (feature image) will show on the product card but not in the Gallery on Product Page.', 'woocommerce-dynamic-gallery' ).'</li>
+<li>* '.__( 'Can be turned ON or OFF for each product from the WooCommerce Product data Dynamic Gallery menu.', 'woocommerce-dynamic-gallery' ).'</li>
+</ul>',
+				'id'     => 'wc_dgallery_feature_image_box',
+				'is_box' => true,
+			),
+			array(
+				'name' 		=> __( 'Include in Gallery', 'woocommerce-dynamic-gallery' ),
+				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'auto_feature_image',
+				'default'	=> 'yes',
+				'type' 		=> 'onoff_checkbox',
+				'free_version'		=> true,
+				'checked_value'		=> 'yes',
+				'unchecked_value'	=> 'no',
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
+			),
+			array(  
+				'name' 		=> __( 'Reset Activation To Default', 'woocommerce-dynamic-gallery' ),
+				'desc' 		=> __( "Switch ON and Save Changes will reset ALL existing and future products to the 'Include in Gallery' Default that you have set above.", 'woocommerce-dynamic-gallery' ),
+				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'reset_feature_image_activate',
+				'default'	=> 'no',
+				'type' 		=> 'onoff_checkbox',
+				'free_version'		=> true,
+				'checked_value'		=> 'yes',
+				'unchecked_value'	=> 'no',
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
+			),
+
+			array(
+            	'name' 		=> __( "VARIATION GALLERIES SUPER POWERS", 'woocommerce-dynamic-gallery' ),
                 'type' 		=> 'heading',
                 'desc'		=> '<img class="rwd_image_maps" src="'.WOO_DYNAMIC_GALLERY_IMAGES_URL.'/variation_galleries_activation_premium.png" usemap="#productCardsMap" style="width: auto; max-width: 100%;" border="0" />
 <map name="productCardsMap" id="productCardsMap">
@@ -297,79 +395,44 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
                 'is_box'	=> true,
            	),
 			array(
-				'name' => __( 'Variations Galleries Activation', 'woo_dgallery' ),
+				'name' => __( 'Variations Galleries Activation', 'woocommerce-dynamic-gallery' ),
 				'type' => 'heading',
 				'class'=> 'pro_feature_fields pro_feature_hidden',
-				'desc' => __( 'Variations Galleries are auto applied to all Variable products upon first install. A Variations Gallery is added to each WooCommerce Product Variation. Variation Gallery can be activated / deactivated from the Dynamic Gallery menu on each product edit page.', 'woo_dgallery' ),
+				'desc' => __( 'Variations Galleries are auto applied to all Variable products upon first install. A Variations Gallery is added to each WooCommerce Product Variation. Variation Gallery can be activated / deactivated from the Dynamic Gallery menu on each product edit page.', 'woocommerce-dynamic-gallery' ),
 				'id'     => 'wc_dgallery_variations_activation_box',
 				'is_box' => true,
 			),
 			array(  
-				'name' 		=> __( 'Variations Activation Default', 'woo_dgallery' ),
-				'desc' 		=> __( 'Changes to the default Variation Galleries activation does NOT apply to existing variable products. It will be applied to all variable products created after changing the default.', 'woo_dgallery' ),
+				'name' 		=> __( 'Variations Activation Default', 'woocommerce-dynamic-gallery' ),
+				'desc' 		=> __( 'Changes to the default Variation Galleries activation does NOT apply to existing variable products. It will be applied to all variable products created after changing the default.', 'woocommerce-dynamic-gallery' ),
 				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'show_variation',
 				'default'	=> 'no',
 				'type' 		=> 'onoff_checkbox',
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
-				'checked_label'		=> __( 'ON', 'woo_dgallery' ),
-				'unchecked_label' 	=> __( 'OFF', 'woo_dgallery' ),
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
 			),
 			array(  
-				'name' 		=> __( 'Reset Activation To Default', 'woo_dgallery' ),
-				'desc' 		=> __( 'Switch ON and Save Changes will reset ALL existing and future variable products to the Variations Gallery Activation Default that you have set above.', 'woo_dgallery' ),
+				'name' 		=> __( 'Reset Activation To Default', 'woocommerce-dynamic-gallery' ),
+				'desc' 		=> __( 'Switch ON and Save Changes will reset ALL existing and future variable products to the Variations Gallery Activation Default that you have set above.', 'woocommerce-dynamic-gallery' ),
 				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'reset_variation_activate',
 				'default'	=> 'no',
 				'type' 		=> 'onoff_checkbox',
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
-				'checked_label'		=> __( 'ON', 'woo_dgallery' ),
-				'unchecked_label' 	=> __( 'OFF', 'woo_dgallery' ),
+				'checked_label'		=> __( 'ON', 'woocommerce-dynamic-gallery' ),
+				'unchecked_label' 	=> __( 'OFF', 'woocommerce-dynamic-gallery' ),
 			),
 
 			array(
-				'name' => __( 'Product Feature Image', 'woo_dgallery' ),
-				'type' => 'heading',
-				'desc' => '<ul>
-<li>* '.__( 'ON this option and the Product Image (featured image) will show as the first image in the gallery without having to upload it to the Gallery.', 'woo_dgallery' ).'</li>
-<li>* '.__( 'OFF and the uploaded Product Image (feature image) will show on the product card but not in the Gallery on Product Page.', 'woo_dgallery' ).'</li>
-<li>* '.__( 'Can be turned ON or OFF for each product from the WooCommerce Product data Dynamic Gallery menu.', 'woo_dgallery' ).'</li>
-</ul>',
-				'id'     => 'wc_dgallery_feature_image_box',
-				'is_box' => true,
-			),
-			array(
-				'name' 		=> __( 'Include in Gallery', 'woo_dgallery' ),
-				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'auto_feature_image',
-				'default'	=> 'yes',
-				'type' 		=> 'onoff_checkbox',
-				'free_version'		=> true,
-				'checked_value'		=> 'yes',
-				'unchecked_value'	=> 'no',
-				'checked_label'		=> __( 'ON', 'woo_dgallery' ),
-				'unchecked_label' 	=> __( 'OFF', 'woo_dgallery' ),
-			),
-			array(  
-				'name' 		=> __( 'Reset Activation To Default', 'woo_dgallery' ),
-				'desc' 		=> __( "Switch ON and Save Changes will reset ALL existing and future products to the 'Include in Gallery' Default that you have set above.", 'woo_dgallery' ),
-				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'reset_feature_image_activate',
-				'default'	=> 'no',
-				'type' 		=> 'onoff_checkbox',
-				'free_version'		=> true,
-				'checked_value'		=> 'yes',
-				'unchecked_value'	=> 'no',
-				'checked_label'		=> __( 'ON', 'woo_dgallery' ),
-				'unchecked_label' 	=> __( 'OFF', 'woo_dgallery' ),
-			),
-
-			array(
-				'name' => __( 'Image Zoom Function', 'woo_dgallery' ),
+				'name' => __( 'Image Zoom Function', 'woocommerce-dynamic-gallery' ),
 				'type' => 'heading',
 				'id'     => 'wc_dgallery_image_zoom_box',
 				'is_box' => true,
 			),
 			array(
-				'name' => __( 'Gallery Popup', 'woo_dgallery' ),
+				'name' => __( 'Gallery Popup', 'woocommerce-dynamic-gallery' ),
 				'desc' 		=> '',
 				'id' 		=> WOO_DYNAMIC_GALLERY_PREFIX.'popup_gallery',
 				'default'	=> 'fb',
@@ -378,19 +441,19 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
 				'onoff_options' => array(
 					array(
 						'val' => 'fb',
-						'text' => __( 'Fancybox', 'woo_dgallery' ),
+						'text' => __( 'Fancybox', 'woocommerce-dynamic-gallery' ),
 						'checked_label'	=> 'ON',
 						'unchecked_label' => 'OFF',
 					),
 					array(
 						'val' => 'colorbox',
-						'text' => __( 'ColorBox', 'woo_dgallery' ),
+						'text' => __( 'ColorBox', 'woocommerce-dynamic-gallery' ),
 						'checked_label'	=> 'ON',
 						'unchecked_label' => 'OFF',
 					),
 					array(
 						'val' => 'deactivate',
-						'text' => __( 'Deactivate', 'woo_dgallery' ),
+						'text' => __( 'Deactivate', 'woocommerce-dynamic-gallery' ),
 						'checked_label'	=> 'ON',
 						'unchecked_label' => 'OFF',
 					),
@@ -398,7 +461,7 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
 			),
 
 			array(
-				'name' => __('Gallery Image Dimensions', 'woo_dgallery'),
+				'name' => __('Gallery Image Dimensions', 'woocommerce-dynamic-gallery' ),
 				'type' => 'heading',
 				'id'     => 'wc_dgallery_image_dimensions_box',
 				'is_box' => true,
@@ -407,12 +470,12 @@ class WC_Dynamic_Gallery_Global_Settings extends WC_Dynamic_Gallery_Admin_UI
                 'type' 		=> 'heading',
 				'desc'		=> '<table class="form-table"><tbody>
 				<tr valign="top">
-				<th class="titledesc" scope="row"><label>' . __( 'Gallery Images', 'woo_dgallery' ) . '</label></th>
-				<td class="forminp">' . sprintf( __( 'Set via the <a href="%s" target="_blank">Single Product Image Dimensions and Hard Crop</a> option from WooCommerce Settings', 'woo_dgallery' ), admin_url( 'admin.php?page=wc-settings&tab=products&section=display' ) ) . '</td>
+				<th class="titledesc" scope="row"><label>' . __( 'Gallery Images', 'woocommerce-dynamic-gallery' ) . '</label></th>
+				<td class="forminp">' . sprintf( __( 'Set via the <a href="%s" target="_blank">Product Main Image Dimensions and Hard Crop</a> option from WooCommerce Settings', 'woocommerce-dynamic-gallery' ), $wc_display_settings_url ) . '</td>
 				</tr>
 				<tr valign="top">
-				<th class="titledesc" scope="row"><label>' . __( 'Gallery Thumbnails', 'woo_dgallery' ) . '</label></th>
-				<td class="forminp">' . sprintf( __( 'Set via the <a href="%s" target="_blank">Product Thumbnails Dimensions and Hard Crop</a> option from WooCommerce Settings', 'woo_dgallery' ), admin_url( 'admin.php?page=wc-settings&tab=products&section=display' ) ) . '</td>
+				<th class="titledesc" scope="row"><label>' . __( 'Gallery Thumbnails', 'woocommerce-dynamic-gallery' ) . '</label></th>
+				<td class="forminp">' . sprintf( __( 'Set via the <a href="%s" target="_blank">Product Thumbnails Dimensions and Hard Crop</a> option from WooCommerce Settings', 'woocommerce-dynamic-gallery' ), $wc_display_settings_url ) . '</td>
 				</tr></tbody></table>',
            	),
         ));

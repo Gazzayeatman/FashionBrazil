@@ -19,10 +19,10 @@ class WC_Dynamic_Gallery_Notices
 	public function update_notice() {
 	?>
 		<div id="message" class="error below-h2" style="margin-left:2px;">
-			<p><?php _e( 'Thank you for updating to WooCommerce Dynamic Gallery Major Version 2.1.0 - we hope you enjoy it.', 'woo_dgallery' ); ?></p>
-			<p><?php _e( '<strong>IMPORTANT!</strong> This update must be run to complete the upgrade and get all the benefits of this new version.', 'woo_dgallery' ); ?></p>
-			<p><?php _e( "<strong>WARNING!</strong> This is a major upgrade - We strongly recommend that you do a database backup BEFORE you run the update. If you don't and something does go wrong, you may lose all of your product images. You have been warned.", 'woo_dgallery' ); ?></p>
-			<p class="submit"><a href="<?php echo esc_url( add_query_arg( 'do_update_db_a3_dynamic_gallery', 'true', admin_url( 'admin.php?page=woo-dynamic-gallery' ) ) ); ?>" class="a3-dg-update-now button-primary"><?php _e( 'RUN UPDATE', 'woo_dgallery' ); ?></a></p>
+			<p><?php _e( 'Thank you for updating to WooCommerce Dynamic Gallery Major Version 2.1.0 - we hope you enjoy it.', 'woocommerce-dynamic-gallery' ); ?></p>
+			<p><?php _e( '<strong>IMPORTANT!</strong> This update must be run to complete the upgrade and get all the benefits of this new version.', 'woocommerce-dynamic-gallery' ); ?></p>
+			<p><?php _e( "<strong>WARNING!</strong> This is a major upgrade - We strongly recommend that you do a database backup BEFORE you run the update. If you don't and something does go wrong, you may lose all of your product images. You have been warned.", 'woocommerce-dynamic-gallery' ); ?></p>
+			<p class="submit"><a href="<?php echo esc_url( add_query_arg( 'do_update_db_a3_dynamic_gallery', 'true', admin_url( 'admin.php?page=woo-dynamic-gallery' ) ) ); ?>" class="a3-dg-update-now button-primary"><?php _e( 'RUN UPDATE', 'woocommerce-dynamic-gallery' ); ?></a></p>
 		</div>
 	<?php
 	}
@@ -30,7 +30,7 @@ class WC_Dynamic_Gallery_Notices
 	public function updated_notice() {
 		?>
 		<div id="message" class="updated below-h2" style="margin-left:2px;">
-			<p><?php _e( 'WooCommerce Dynamic Gallery Data update complete. Thank you for updating to the latest version!', 'woo_dgallery' ); ?></p>
+			<p><?php _e( 'WooCommerce Dynamic Gallery Data update complete. Thank you for updating to the latest version!', 'woocommerce-dynamic-gallery' ); ?></p>
 		</div>
 		<?php
 	}

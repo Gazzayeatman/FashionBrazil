@@ -61,7 +61,7 @@ class WC_Gallery_Display_Class
 	<?php
 		do_action('wc_dynamic_gallery_before_gallery');
 
-		WC_Gallery_Display_Class::get_gallery_main( $product->id );
+		WC_Gallery_Display_Class::get_gallery_main( $product->get_id() );
 
 		do_action('wc_dynamic_gallery_after_gallery');
 	?>
@@ -99,6 +99,15 @@ class WC_Gallery_Display_Class
 		$max_height          = 0;
 		$width_of_max_height = 0;
 
+		if ( version_compare( WC_VERSION, '3.3.0', '<' ) ) {
+			// bw compat. for less than WC 3.3.0
+			$single_size_name    = 'shop_single';
+			$thumbnail_size_name = 'shop_thumbnail';
+		} else {
+			$single_size_name    = 'woocommerce_single';
+			$thumbnail_size_name = 'woocommerce_thumbnail';
+		}
+
 		// Process to get max height and width of max height for set gallery container
 		if ( count( $dgallery_ids ) > 0 ) {
 			$lightbox_class = 'lightbox';
@@ -112,8 +121,9 @@ class WC_Gallery_Display_Class
 
 				$image_data             = get_post( $img_id );
 				$large_image_attribute  = wp_get_attachment_image_src( $img_id, 'large' );
-				$single_image_attribute = wp_get_attachment_image_src( $img_id, 'shop_single' );
-				$thumb_image_attribute  = wp_get_attachment_image_src( $img_id, 'shop_thumbnail' );
+
+				$single_image_attribute = wp_get_attachment_image_src( $img_id, $single_size_name );
+				$thumb_image_attribute  = wp_get_attachment_image_src( $img_id, $thumbnail_size_name );
 
 				$alt           = get_post_meta( $img_id, '_wp_attachment_image_alt', true );
 				$single_srcset = '';
@@ -122,12 +132,12 @@ class WC_Gallery_Display_Class
 				$thumb_sizes   = '';
 
 				if ( function_exists( 'wp_get_attachment_image_srcset' ) ) {
-					$single_srcset = wp_get_attachment_image_srcset( $img_id, 'shop_single' );
-					$thumb_srcset = wp_get_attachment_image_srcset( $img_id, 'shop_thumbnail' );
+					$single_srcset = wp_get_attachment_image_srcset( $img_id, $single_size_name );
+					$thumb_srcset = wp_get_attachment_image_srcset( $img_id, $thumbnail_size_name );
 				}
 				if ( function_exists( 'wp_get_attachment_image_sizes' ) ) {
-					$single_sizes = wp_get_attachment_image_sizes( $img_id, 'shop_single' );
-					$thumb_sizes = wp_get_attachment_image_sizes( $img_id, 'shop_thumbnail' );
+					$single_sizes = wp_get_attachment_image_sizes( $img_id, $single_size_name );
+					$thumb_sizes = wp_get_attachment_image_sizes( $img_id, $thumbnail_size_name );
 				}
 
 				$main_dgallery[$img_id] = array (
@@ -208,12 +218,12 @@ class WC_Gallery_Display_Class
 				}
 			}
 
-			$shop_thumbnail  = wc_get_image_size( 'shop_thumbnail' );
-			$g_thumb_width   = $shop_thumbnail['width'];
-			$g_thumb_height  = $shop_thumbnail['height'];
-			$thumb_show_type = get_option( WOO_DYNAMIC_GALLERY_PREFIX . 'thumb_show_type', 'slider' );
-			$thumb_columns   = get_option( WOO_DYNAMIC_GALLERY_PREFIX . 'thumb_columns', 3 );
-			$thumb_spacing   = get_option( WOO_DYNAMIC_GALLERY_PREFIX . 'thumb_spacing', 10 );
+			$woocommerce_thumbnail = wc_get_image_size( $thumbnail_size_name );
+			$g_thumb_width         = $woocommerce_thumbnail['width'];
+			$g_thumb_height        = $woocommerce_thumbnail['height'];
+			$thumb_show_type       = get_option( WOO_DYNAMIC_GALLERY_PREFIX . 'thumb_show_type', 'slider' );
+			$thumb_columns         = get_option( WOO_DYNAMIC_GALLERY_PREFIX . 'thumb_columns', 3 );
+			$thumb_spacing         = get_option( WOO_DYNAMIC_GALLERY_PREFIX . 'thumb_spacing', 10 );
 			if ( 'static' == $thumb_show_type ) {
 				$thumbs_list_class = 'a3dg-thumbs-static';
 			}
@@ -247,8 +257,8 @@ class WC_Gallery_Display_Class
 
 			$popup_gallery     = get_option( WOO_DYNAMIC_GALLERY_PREFIX.'popup_gallery' );
 			$hide_thumb_1image = get_option( WOO_DYNAMIC_GALLERY_PREFIX.'hide_thumb_1image', 'yes' );
-			$start_label       = __('START SLIDESHOW', 'woo_dgallery');
-			$stop_label        = __('STOP SLIDESHOW', 'woo_dgallery');
+			$start_label       = __('START SLIDESHOW', 'woocommerce-dynamic-gallery' );
+			$stop_label        = __('STOP SLIDESHOW', 'woocommerce-dynamic-gallery' );
 
 			if ( 'yes' == $global_stop_scroll_1image && count( $dgallery_ids ) <= 1 ) {
 				$enable_scroll            = 'false';
@@ -261,7 +271,7 @@ class WC_Gallery_Display_Class
 				$display_back_and_forward = 'false';
 			}
 
-			$zoom_label        = __('ZOOM +', 'woo_dgallery');
+			$zoom_label        = __('ZOOM +', 'woocommerce-dynamic-gallery' );
 			if ( 'deactivate' == $popup_gallery ) {
 				$zoom_label     = '';
 				$lightbox_class = 'lightbox';
@@ -385,7 +395,7 @@ class WC_Gallery_Display_Class
 						beforeImageVisible: false
 					}
 				};
-				jQuery("#gallery_'.$product_id.'").addGallery(settings_defaults_'.$product_id.');
+				jQuery("#gallery_'.$product_id.'").adGallery(settings_defaults_'.$product_id.');
 			});
 
             </script>';
@@ -419,7 +429,7 @@ class WC_Gallery_Display_Class
 						$script_fancybox = '';
                         if ( count( $dgallery_ids ) > 0 ) {
 
-							$current_color_text = __('image {current} of {total}', 'woo_dgallery');
+							$current_color_text = __('image {current} of {total}', 'woocommerce-dynamic-gallery' );
 							$current_color_text = '';
 
 							$script_colorbox .= '<script type="text/javascript">';

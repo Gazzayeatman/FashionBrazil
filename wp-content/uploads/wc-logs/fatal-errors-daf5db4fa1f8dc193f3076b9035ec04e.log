@@ -1,0 +1,106 @@
+2018-05-16T21:54:06+00:00 CRITICAL Call to undefined function get_field()
+
+2018-05-16T21:57:35+00:00 CRITICAL Call to undefined function get_field()
+
+2018-05-16T21:57:59+00:00 CRITICAL Call to undefined function get_field()
+
+2018-05-17T19:18:34+00:00 CRITICAL Call to undefined function get_field()
+
+2018-05-17T19:49:47+00:00 CRITICAL Uncaught Error: Call to undefined function simplexml_load_file() in /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php:713
+Stack trace:
+#0 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(66): WP_Installer->load_repositories_list()
+#1 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(37): WP_Installer->__construct()
+#2 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(7): WP_Installer::instance()
+#3 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(11): WP_Installer()
+#4 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/loader.php(120): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/class-wp-hook.php(286): wpml_installer_instance_delegator('')
+#6 /var/www/html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#7 /var/www/html/wp-include
+
+2018-05-17T19:50:03+00:00 CRITICAL Uncaught Error: Call to undefined function get_field() in /var/www/html/wp-content/themes/FashionBrazilShop/index.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(74): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown
+
+2018-05-17T19:50:44+00:00 CRITICAL Uncaught Error: Call to undefined function get_field() in /var/www/html/wp-content/themes/FashionBrazilShop/index.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(74): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown
+
+2018-05-17T19:51:06+00:00 CRITICAL Uncaught Error: Call to undefined function simplexml_load_file() in /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php:713
+Stack trace:
+#0 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(66): WP_Installer->load_repositories_list()
+#1 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(37): WP_Installer->__construct()
+#2 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(7): WP_Installer::instance()
+#3 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(11): WP_Installer()
+#4 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/loader.php(120): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/class-wp-hook.php(286): wpml_installer_instance_delegator('')
+#6 /var/www/html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#7 /var/www/html/wp-include
+
+2018-05-17T19:51:06+00:00 CRITICAL Uncaught Error: Call to undefined function simplexml_load_file() in /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php:713
+Stack trace:
+#0 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(66): WP_Installer->load_repositories_list()
+#1 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(37): WP_Installer->__construct()
+#2 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(7): WP_Installer::instance()
+#3 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(11): WP_Installer()
+#4 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/loader.php(120): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/class-wp-hook.php(286): wpml_installer_instance_delegator('')
+#6 /var/www/html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#7 /var/www/html/wp-include
+
+2018-05-17T19:51:10+00:00 CRITICAL Uncaught Error: Call to undefined function simplexml_load_file() in /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php:713
+Stack trace:
+#0 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(66): WP_Installer->load_repositories_list()
+#1 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(37): WP_Installer->__construct()
+#2 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(7): WP_Installer::instance()
+#3 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(11): WP_Installer()
+#4 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/loader.php(120): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/class-wp-hook.php(286): wpml_installer_instance_delegator('')
+#6 /var/www/html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#7 /var/www/html/wp-include
+
+2018-05-17T19:51:14+00:00 CRITICAL Uncaught Error: Call to undefined function get_field() in /var/www/html/wp-content/themes/FashionBrazilShop/index.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(74): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown
+
+2018-05-17T19:51:18+00:00 CRITICAL Uncaught Error: Call to undefined function simplexml_load_file() in /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php:713
+Stack trace:
+#0 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(66): WP_Installer->load_repositories_list()
+#1 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(37): WP_Installer->__construct()
+#2 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(7): WP_Installer::instance()
+#3 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(11): WP_Installer()
+#4 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/loader.php(120): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/class-wp-hook.php(286): wpml_installer_instance_delegator('')
+#6 /var/www/html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#7 /var/www/html/wp-include
+
+2018-05-17T19:51:44+00:00 CRITICAL Uncaught Error: Call to undefined function simplexml_load_file() in /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php:713
+Stack trace:
+#0 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(66): WP_Installer->load_repositories_list()
+#1 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/includes/installer.class.php(37): WP_Installer->__construct()
+#2 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(7): WP_Installer::instance()
+#3 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/installer.php(11): WP_Installer()
+#4 /var/www/html/wp-content/plugins/woocommerce-products-filter/installer/loader.php(120): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/class-wp-hook.php(286): wpml_installer_instance_delegator('')
+#6 /var/www/html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#7 /var/www/html/wp-include
+
+2018-05-17T20:03:34+00:00 CRITICAL Uncaught Error: Call to undefined function get_field() in /var/www/html/wp-content/themes/FashionBrazilShop/index.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(74): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown
+

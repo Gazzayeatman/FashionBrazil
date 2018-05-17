@@ -75,7 +75,7 @@ class WC_Dynamic_Gallery_Settings_Tab extends WC_Dynamic_Gallery_Admin_UI
 		
 		$tab_data = array( 
 			'name'				=> 'global-settings',
-			'label'				=> __( 'Settings', 'woo_dgallery' ),
+			'label'				=> __( 'Settings', 'woocommerce-dynamic-gallery' ),
 			'callback_function'	=> 'wc_dgallery_settings_tab_manager',
 		);
 		

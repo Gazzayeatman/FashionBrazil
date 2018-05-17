@@ -74,9 +74,8 @@ do_action( "{$taxonomy}_pre_edit_form", $tag, $taxonomy ); ?>
 <div id="message" class="updated">
 	<p><strong><?php echo $message; ?></strong></p>
 	<?php if ( $wp_http_referer ) { ?>
-	<p><a href="<?php echo esc_url( $wp_http_referer ); ?>"><?php
-		/* translators: %s: taxonomy name */
-		printf( _x( '&larr; Back to %s', 'admin screen' ), $tax->labels->name );
+	<p><a href="<?php echo esc_url( wp_validate_redirect( esc_url_raw( $wp_http_referer ), admin_url( 'term.php?taxonomy=' . $taxonomy ) ) ); ?>"><?php
+		echo esc_html( $tax->labels->back_to_items );
 	?></a></p>
 	<?php } ?>
 </div>
@@ -146,7 +145,7 @@ do_action( "{$taxonomy}_term_edit_form_top", $tag, $taxonomy );
 <?php } ?>
 <?php if ( is_taxonomy_hierarchical($taxonomy) ) : ?>
 		<tr class="form-field term-parent-wrap">
-			<th scope="row"><label for="parent"><?php _ex( 'Parent', 'term parent' ); ?></label></th>
+			<th scope="row"><label for="parent"><?php echo esc_html( $tax->labels->parent_item ); ?></label></th>
 			<td>
 				<?php
 				$dropdown_args = array(
@@ -254,9 +253,20 @@ if ( 'category' == $taxonomy ) {
  * @param string $taxonomy Current taxonomy slug.
  */
 do_action( "{$taxonomy}_edit_form", $tag, $taxonomy );
-
-submit_button( __('Update') );
 ?>
+
+<div class="edit-tag-actions">
+
+	<?php submit_button( __( 'Update' ), 'primary', null, false ); ?>
+
+	<?php if ( current_user_can( 'delete_term', $tag->term_id ) ) : ?>
+		<span id="delete-link">
+			<a class="delete" href="<?php echo admin_url( wp_nonce_url( "edit-tags.php?action=delete&taxonomy=$taxonomy&tag_ID=$tag->term_id", 'delete-tag_' . $tag->term_id ) ) ?>"><?php _e( 'Delete' ); ?></a>
+		</span>
+	<?php endif; ?>
+
+</div>
+
 </form>
 </div>
 

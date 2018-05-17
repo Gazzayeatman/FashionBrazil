@@ -297,6 +297,56 @@ function wp_ajax_autocomplete_user() {
 }
 
 /**
+ * Handles AJAX requests for community events
+ *
+ * @since 4.8.0
+ */
+function wp_ajax_get_community_events() {
+	require_once( ABSPATH . 'wp-admin/includes/class-wp-community-events.php' );
+
+	check_ajax_referer( 'community_events' );
+
+	$search         = isset( $_POST['location'] ) ? wp_unslash( $_POST['location'] ) : '';
+	$timezone       = isset( $_POST['timezone'] ) ? wp_unslash( $_POST['timezone'] ) : '';
+	$user_id        = get_current_user_id();
+	$saved_location = get_user_option( 'community-events-location', $user_id );
+	$events_client  = new WP_Community_Events( $user_id, $saved_location );
+	$events         = $events_client->get_events( $search, $timezone );
+	$ip_changed     = false;
+
+	if ( is_wp_error( $events ) ) {
+		wp_send_json_error( array(
+			'error' => $events->get_error_message(),
+		) );
+	} else {
+		if ( empty( $saved_location['ip'] ) && ! empty( $events['location']['ip'] ) ) {
+			$ip_changed = true;
+		} elseif ( isset( $saved_location['ip'] ) && ! empty( $events['location']['ip'] ) && $saved_location['ip'] !== $events['location']['ip'] ) {
+			$ip_changed = true;
+		}
+
+		/*
+		 * The location should only be updated when it changes. The API doesn't always return
+		 * a full location; sometimes it's missing the description or country. The location
+		 * that was saved during the initial request is known to be good and complete, though.
+		 * It should be left in tact until the user explicitly changes it (either by manually
+		 * searching for a new location, or by changing their IP address).
+		 *
+		 * If the location were updated with an incomplete response from the API, then it could
+		 * break assumptions that the UI makes (e.g., that there will always be a description
+		 * that corresponds to a latitude/longitude location).
+		 *
+		 * The location is stored network-wide, so that the user doesn't have to set it on each site.
+		 */
+		if ( $ip_changed || $search ) {
+			update_user_option( $user_id, 'community-events-location', $events['location'], true );
+		}
+
+		wp_send_json_success( $events );
+	}
+}
+
+/**
  * Ajax handler for dashboard widgets.
  *
  * @since 3.4.0
@@ -913,7 +963,7 @@ function wp_ajax_get_tagcloud() {
 	}
 
 	// We need raw tag names here, so don't filter the output
-	$return = wp_generate_tag_cloud( $tags, array('filter' => 0) );
+	$return = wp_generate_tag_cloud( $tags, array( 'filter' => 0, 'format' => 'list' ) );
 
 	if ( empty($return) )
 		wp_die( 0 );
@@ -1050,6 +1100,11 @@ function wp_ajax_replyto_comment( $action ) {
 	}
 
 	$comment_id = wp_new_comment( $commentdata );
+
+	if ( is_wp_error( $comment_id ) ) {
+		wp_die( $comment_id->get_error_message() );
+	}
+
 	$comment = get_comment($comment_id);
 	if ( ! $comment ) wp_die( 1 );
 
@@ -1497,7 +1552,10 @@ function wp_ajax_wp_link_ajax() {
 
 	$args['pagenum'] = ! empty( $_POST['page'] ) ? absint( $_POST['page'] ) : 1;
 
-	require(ABSPATH . WPINC . '/class-wp-editor.php');
+	if ( ! class_exists( '_WP_Editors', false ) ) {
+		require( ABSPATH . WPINC . '/class-wp-editor.php' );
+	}
+
 	$results = _WP_Editors::wp_link_query( $args );
 
 	if ( ! isset( $results ) )
@@ -1598,6 +1656,8 @@ function wp_ajax_sample_permalink() {
  * Ajax handler for Quick Edit saving a post from a list table.
  *
  * @since 3.1.0
+ *
+ * @global string $mode List table view mode.
  */
 function wp_ajax_inline_save() {
 	global $mode;
@@ -1824,7 +1884,7 @@ function wp_ajax_widgets_order() {
 	// Save widgets order for all sidebars.
 	if ( is_array($_POST['sidebars']) ) {
 		$sidebars = array();
-		foreach ( $_POST['sidebars'] as $key => $val ) {
+		foreach ( wp_unslash( $_POST['sidebars'] ) as $key => $val ) {
 			$sb = array();
 			if ( !empty($val) ) {
 				$val = explode(',', $val);
@@ -1880,8 +1940,8 @@ function wp_ajax_save_widget() {
 	/** This action is documented in wp-admin/widgets.php */
 	do_action( 'sidebar_admin_setup' );
 
-	$id_base = $_POST['id_base'];
-	$widget_id = $_POST['widget-id'];
+	$id_base = wp_unslash( $_POST['id_base'] );
+	$widget_id = wp_unslash( $_POST['widget-id'] );
 	$sidebar_id = $_POST['sidebar'];
 	$multi_number = !empty($_POST['multi_number']) ? (int) $_POST['multi_number'] : 0;
 	$settings = isset($_POST['widget-' . $id_base]) && is_array($_POST['widget-' . $id_base]) ? $_POST['widget-' . $id_base] : false;
@@ -2933,15 +2993,22 @@ function wp_ajax_query_themes() {
  * @global WP_Post    $post       Global $post.
  * @global WP_Embed   $wp_embed   Embed API instance.
  * @global WP_Scripts $wp_scripts
+ * @global int        $content_width
  */
 function wp_ajax_parse_embed() {
-	global $post, $wp_embed;
+	global $post, $wp_embed, $content_width;
 
-	if ( ! $post = get_post( (int) $_POST['post_ID'] ) ) {
+	if ( empty( $_POST['shortcode'] ) ) {
 		wp_send_json_error();
 	}
-
-	if ( empty( $_POST['shortcode'] ) || ! current_user_can( 'edit_post', $post->ID ) ) {
+	$post_id = isset( $_POST[ 'post_ID' ] ) ? intval( $_POST[ 'post_ID' ] ) : 0;
+	if ( $post_id > 0 ) {
+		$post = get_post( $post_id );
+		if ( ! $post || ! current_user_can( 'edit_post', $post->ID ) ) {
+			wp_send_json_error();
+		}
+		setup_postdata( $post );
+	} elseif ( ! current_user_can( 'edit_posts' ) ) { // See WP_oEmbed_Controller::get_proxy_item_permissions_check().
 		wp_send_json_error();
 	}
 
@@ -2958,9 +3025,16 @@ function wp_ajax_parse_embed() {
 	}
 
 	$parsed = false;
-	setup_postdata( $post );
-
 	$wp_embed->return_false_on_fail = true;
+
+	if ( 0 === $post_id ) {
+		/*
+		 * Refresh oEmbeds cached outside of posts that are past their TTL.
+		 * Posts are excluded because they have separate logic for refreshing
+		 * their post meta caches. See WP_Embed::cache_oembed().
+		 */
+		$wp_embed->usecache = false;
+	}
 
 	if ( is_ssl() && 0 === strpos( $url, 'http://' ) ) {
 		// Admin is ssl and the user pasted non-ssl URL.
@@ -2970,6 +3044,15 @@ function wp_ajax_parse_embed() {
 
 		if ( ! $parsed ) {
 			$no_ssl_support = true;
+		}
+	}
+
+	// Set $content_width so any embeds fit in the destination iframe.
+	if ( isset( $_POST['maxwidth'] ) && is_numeric( $_POST['maxwidth'] ) && $_POST['maxwidth'] > 0 ) {
+		if ( ! isset( $content_width ) ) {
+			$content_width = intval( $_POST['maxwidth'] );
+		} else {
+			$content_width = min( $content_width, intval( $_POST['maxwidth'] ) );
 		}
 	}
 
@@ -2998,7 +3081,7 @@ function wp_ajax_parse_embed() {
 			$wp_scripts->done = array();
 		}
 		ob_start();
-		wp_print_scripts( 'wp-mediaelement' );
+		wp_print_scripts( array( 'mediaelement-vimeo', 'wp-mediaelement' ) );
 		$scripts = ob_get_clean();
 
 		$parsed = $styles . $html . $scripts;
@@ -3089,7 +3172,7 @@ function wp_ajax_parse_media_shortcode() {
 
 		wp_print_scripts( 'wp-playlist' );
 	} else {
-		wp_print_scripts( array( 'froogaloop', 'wp-mediaelement' ) );
+		wp_print_scripts( array( 'mediaelement-vimeo', 'wp-mediaelement' ) );
 	}
 
 	wp_send_json_success( array(
@@ -3134,28 +3217,6 @@ function wp_ajax_destroy_sessions() {
 }
 
 /**
- * Ajax handler for saving a post from Press This.
- *
- * @since 4.2.0
- */
-function wp_ajax_press_this_save_post() {
-	include( ABSPATH . 'wp-admin/includes/class-wp-press-this.php' );
-	$wp_press_this = new WP_Press_This();
-	$wp_press_this->save_post();
-}
-
-/**
- * Ajax handler for creating new category from Press This.
- *
- * @since 4.2.0
- */
-function wp_ajax_press_this_add_category() {
-	include( ABSPATH . 'wp-admin/includes/class-wp-press-this.php' );
-	$wp_press_this = new WP_Press_This();
-	$wp_press_this->add_category();
-}
-
-/**
  * Ajax handler for cropping an image.
  *
  * @since 4.3.0
@@ -3164,7 +3225,7 @@ function wp_ajax_crop_image() {
 	$attachment_id = absint( $_POST['id'] );
 
 	check_ajax_referer( 'image_editor-' . $attachment_id, 'nonce' );
-	if ( ! current_user_can( 'customize' ) ) {
+	if ( empty( $attachment_id ) || ! current_user_can( 'edit_post', $attachment_id ) ) {
 		wp_send_json_error();
 	}
 
@@ -3303,6 +3364,8 @@ function wp_ajax_save_wporg_username() {
  * @since 4.6.0
  *
  * @see Theme_Upgrader
+ *
+ * @global WP_Filesystem_Base $wp_filesystem Subclass
  */
 function wp_ajax_install_theme() {
 	check_ajax_referer( 'updates' );
@@ -3399,7 +3462,7 @@ function wp_ajax_install_theme() {
 
 	/*
 	 * See WP_Theme_Install_List_Table::_get_theme_status() if we wanted to check
-	 * on post-install status.
+	 * on post-installation status.
 	 */
 	wp_send_json_success( $status );
 }
@@ -3410,6 +3473,8 @@ function wp_ajax_install_theme() {
  * @since 4.6.0
  *
  * @see Theme_Upgrader
+ *
+ * @global WP_Filesystem_Base $wp_filesystem Subclass
  */
 function wp_ajax_update_theme() {
 	check_ajax_referer( 'updates' );
@@ -3426,12 +3491,18 @@ function wp_ajax_update_theme() {
 	$status     = array(
 		'update'     => 'theme',
 		'slug'       => $stylesheet,
+		'oldVersion' => '',
 		'newVersion' => '',
 	);
 
 	if ( ! current_user_can( 'update_themes' ) ) {
 		$status['errorMessage'] = __( 'Sorry, you are not allowed to update themes for this site.' );
 		wp_send_json_error( $status );
+	}
+
+	$theme = wp_get_theme( $stylesheet );
+	if ( $theme->exists() ) {
+		$status['oldVersion'] = $theme->get( 'Version' );
 	}
 
 	include_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
@@ -3465,7 +3536,7 @@ function wp_ajax_update_theme() {
 		}
 
 		$theme = wp_get_theme( $stylesheet );
-		if ( $theme->get( 'Version' ) ) {
+		if ( $theme->exists() ) {
 			$status['newVersion'] = $theme->get( 'Version' );
 		}
 
@@ -3495,6 +3566,8 @@ function wp_ajax_update_theme() {
  * @since 4.6.0
  *
  * @see delete_theme()
+ *
+ * @global WP_Filesystem_Base $wp_filesystem Subclass
  */
 function wp_ajax_delete_theme() {
 	check_ajax_referer( 'updates' );
@@ -3563,6 +3636,8 @@ function wp_ajax_delete_theme() {
  * @since 4.6.0
  *
  * @see Plugin_Upgrader
+ *
+ * @global WP_Filesystem_Base $wp_filesystem Subclass
  */
 function wp_ajax_install_plugin() {
 	check_ajax_referer( 'updates' );
@@ -3638,10 +3713,10 @@ function wp_ajax_install_plugin() {
 	$install_status = install_plugin_install_status( $api );
 	$pagenow = isset( $_POST['pagenow'] ) ? sanitize_key( $_POST['pagenow'] ) : '';
 
-	// If install request is coming from import page, do not return network activation link.
+	// If installation request is coming from import page, do not return network activation link.
 	$plugins_url = ( 'import' === $pagenow ) ? admin_url( 'plugins.php' ) : network_admin_url( 'plugins.php' );
 
-	if ( current_user_can( 'activate_plugins' ) && is_plugin_inactive( $install_status['file'] ) ) {
+	if ( current_user_can( 'activate_plugin', $install_status['file'] ) && is_plugin_inactive( $install_status['file'] ) ) {
 		$status['activateUrl'] = add_query_arg( array(
 			'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $install_status['file'] ),
 			'action'   => 'activate',
@@ -3662,6 +3737,8 @@ function wp_ajax_install_plugin() {
  * @since 4.2.0
  *
  * @see Plugin_Upgrader
+ *
+ * @global WP_Filesystem_Base $wp_filesystem Subclass
  */
 function wp_ajax_update_plugin() {
 	check_ajax_referer( 'updates' );
@@ -3765,6 +3842,8 @@ function wp_ajax_update_plugin() {
  * @since 4.6.0
  *
  * @see delete_plugins()
+ *
+ * @global WP_Filesystem_Base $wp_filesystem Subclass
  */
 function wp_ajax_delete_plugin() {
 	check_ajax_referer( 'updates' );
@@ -3914,4 +3993,27 @@ function wp_ajax_search_install_plugins() {
 	$status['items'] = ob_get_clean();
 
 	wp_send_json_success( $status );
+}
+
+/**
+ * Ajax handler for editing a theme or plugin file.
+ *
+ * @since 4.9.0
+ * @see wp_edit_theme_plugin_file()
+ */
+function wp_ajax_edit_theme_plugin_file() {
+	$r = wp_edit_theme_plugin_file( wp_unslash( $_POST ) ); // Validation of args is done in wp_edit_theme_plugin_file().
+	if ( is_wp_error( $r ) ) {
+		wp_send_json_error( array_merge(
+			array(
+				'code' => $r->get_error_code(),
+				'message' => $r->get_error_message(),
+			),
+			(array) $r->get_error_data()
+		) );
+	} else {
+		wp_send_json_success( array(
+			'message' => __( 'File edited successfully.' ),
+		) );
+	}
 }

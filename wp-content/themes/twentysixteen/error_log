@@ -1,0 +1,5 @@
+[23-Dec-2017 02:50:25 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentysixteen/404.php on line 10
+[24-Jan-2018 22:56:32 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentysixteen/404.php on line 10
+[16-Feb-2018 19:27:08 UTC] PHP Fatal error:  Call to undefined function language_attributes() in /home/fashio17/public_html/wp-content/themes/twentysixteen/header.php on line 13
+[16-Feb-2018 19:27:23 UTC] PHP Fatal error:  Call to undefined function language_attributes() in /home/fashio17/public_html/wp-content/themes/twentysixteen/header.php on line 13
+[09-Mar-2018 03:10:47 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentysixteen/404.php on line 10

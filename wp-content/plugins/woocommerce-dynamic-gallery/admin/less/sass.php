@@ -5,10 +5,10 @@ if (!defined('ABSPATH'))
 
 class WC_Dynamic_Gallery_Less
 {
-	public $plugin_name = 'woo_dynamic_gallery';
-	public $css_file_name = 'woo_dynamic_gallery';
-	public $plugin_folder = WOO_DYNAMIC_GALLERY_FOLDER;
-	public $plugin_dir = WOO_DYNAMIC_GALLERY_DIR;
+    public $plugin_name   = WOO_DYNAMIC_GALLERY_KEY;
+    public $css_file_name = 'woo_dynamic_gallery';
+    public $plugin_folder = WOO_DYNAMIC_GALLERY_FOLDER;
+    public $plugin_dir    = WOO_DYNAMIC_GALLERY_DIR;
 
     /*-----------------------------------------------------------------------------------*/
     /* Constructor */

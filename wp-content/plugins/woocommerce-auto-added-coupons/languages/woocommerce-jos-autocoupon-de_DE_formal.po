@@ -1,0 +1,364 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce auto added coupons 1.1.3.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/woocommerce-auto-"
+"added-coupons\n"
+"POT-Creation-Date: 2016-03-28 21:24+0200\n"
+"PO-Revision-Date: 2017-12-11 13:55+0000\n"
+"Last-Translator: Stanislaw <post@hloch.de>\n"
+"Language-Team: German (Formal)\n"
+"Language: de-DE-formal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: c:/lamp/www/qrvm_woo\n"
+"X-Poedit-SearchPath-0: wp-content/plugins/woocommerce-auto-added-coupons\n"
+"Plural-Forms: nplurals=2; plural=n != 1"
+
+msgid "'Select your gift'-message"
+msgstr "'Wähle Dein Geschenk'-Mitteilung"
+
+msgid "(AND)"
+msgstr "(UND)"
+
+msgid "(OR)"
+msgstr "(ODER)"
+
+msgid "AND Categories (not OR)"
+msgstr "UND Kategorien (nicht ODER9"
+
+msgid "AND Products (not OR)"
+msgstr "UND Produkte (nicht ODER9"
+
+msgid "Allow discount on cart with excluded items"
+msgstr "Erlaube Rabatt auf den Warenkorb mit ausgeschlossenen Gegenständen"
+
+msgid "Allow multiplication of the free products"
+msgstr "Erlaube die Mehrfachauswahl von kostenlosen Produkten"
+
+msgid "Allow when minimum spend not reached"
+msgstr "Erlauben, wenn der minimale Betrag nicht erreicht wurde"
+
+msgid "Allowed Customers"
+msgstr "Zugelassene Kunden"
+
+msgid "Allowed User Roles"
+msgstr "Erlaubte Benutzerrollen"
+
+msgid "Any customer"
+msgstr "Alle Kunden"
+
+msgid "Any payment method"
+msgstr "Alle Zahlungsarten"
+
+msgid "Any role"
+msgstr "Jede Benutzerrolle"
+
+msgid "Any shipping method"
+msgstr "Alle Versandarten"
+
+msgid "Apply silently"
+msgstr "Heimlich anwenden"
+
+msgid "Auto coupon"
+msgstr "Automatisch einlösen"
+
+msgid "Auto coupons"
+msgstr "Automatische Coupons"
+
+msgid ""
+"Automatically add the coupon to the cart if the restrictions are met. Please "
+"enter a description when you check this box, the description will be shown "
+"in the customer's cart if the coupon is applied."
+msgstr ""
+"Diesen Coupon im Warenkorb automatisch einlösen, wenn die Bedingungen "
+"erfüllt wurden. Bitte geben Sie eine Beschreibung ein. Wenn Sie das Häkchen "
+"setzen, wird die Beschreibung im Warenkorb des Nutzers angezeigt, sobald der "
+"Coupon eingelöst wurde."
+
+msgid "BOGO matching products"
+msgstr "BOGO passende Produkte"
+
+msgid ""
+"Buy one or more of any of the matching products (see 'Usage Restriction'-tab)"
+" and get one free. Check 'Allow multiplication' to get one free item for "
+"every matching item in the cart."
+msgstr ""
+"Kaufe eines oder mehrere der passenden Produkte und erhalte eines kostenlos. "
+"Wähle 'Erlaube Multiplizierung', um einen kostenlosen Gegenstand für jedes "
+"passende Produkt im Warenkorb zu erhalten."
+
+msgid ""
+"Check this box if ALL of the products (see tab 'usage restriction') must be "
+"in the cart to use this coupon (instead of only one of the products)."
+msgstr ""
+"Wähle diese Auswahl, wenn ALLE Produkte (siehe Tabulator "
+"\"Nutzungseinschränkung\") im Warenkorb sein müssen, um diesen Coupon zu "
+"nutzen (anstatt nur eines der Produkte)."
+
+msgid ""
+"Check this box if products from ALL of the categories (see tab 'usage "
+"restriction') must be in the cart to use this coupon (instead of only one "
+"from one of the categories)."
+msgstr ""
+"Wähle diese Auswahl, wenn Produkte von ALLEN Kategorien (siehe Tabulator "
+"\"Nutzungseinschränkung\") im Warenkorb sein müssen, um diesen Coupon zu "
+"nutzen (anstatt nur eine der Kategorien)."
+
+msgid "Check this box if the customer must choose from the free products."
+msgstr ""
+"Wähle diese Auswahl, wenn der Kunden aus den freien Produkten auswählen muss."
+
+msgid ""
+"Check this box to allow a 'Cart Discount' coupon to be applied even when "
+"excluded items are in the cart (see tab 'usage restriction')."
+msgstr ""
+"Wähle diese Auswahl, um einen Warenkorbrabatt-Coupon anzuwenden, selbst wenn "
+"ausgeschlossene Gegenstände im Warenkorb sind."
+
+msgid ""
+"Check this box to allow the coupon to be in the cart even when minimum spend "
+"(see tab 'usage restriction') is not reached. Value of the discount will be "
+"0 until minimum spend is reached."
+msgstr ""
+"Wähle diese Auswahl, um den Coupon im Warenkorb zuzulassen, selbst wenn der "
+"minimale Betrag nicht erreicht wurde. Der Wert des Rabatts bleibt bei 0, bis "
+"der minimale Betrag erreicht ist."
+
+msgid "Checkout"
+msgstr "Kasse"
+
+msgid "Customer restrictions"
+msgstr "Kundeneinschränkungen"
+
+msgid "Disallowed User Roles"
+msgstr "Ausgeschlossene Benutzerrollen"
+
+msgid "Discount applied: %s"
+msgstr "Verwendeter Rabatt: %s"
+
+msgid "Discount on cart with excluded products"
+msgstr "Rabatt auf den Warenkorb mit ausgeschlossenen Produkten"
+
+msgid "Do you find WooCommerce Extended Coupon Features useful?"
+msgstr "Finden Sie WooCommerce \"Erweiterte Coupon Merkmale\" nützlich?"
+
+msgid "Documentation"
+msgstr "Dokumentation"
+
+msgid "Don't display a message when this coupon is automatically applied."
+msgstr "Keine Nachricht anzeigen, wenn der Coupon automatisch angewendet wird."
+
+msgid "Donate to the developer"
+msgstr "Danke dem Entwickler"
+
+msgid "EXPERIMENTAL: "
+msgstr "EXPERIMENTELL:"
+
+msgid "Express your gratitude"
+msgstr "Zeigen Sie Ihre Dankbarkeit"
+
+msgid "Free products"
+msgstr "Kostenlose Produkte"
+
+msgid ""
+"Free products that will be added to the cart when this coupon is applied."
+msgstr ""
+"Kostenlose Produkte, die zum Warenkorb hinzugefügt werden, wenn dieser "
+"Coupon angewendet wird."
+
+msgid "Free shipping coupon"
+msgstr "Gratis Versandcoupon"
+
+msgid "Free!"
+msgstr "Kostenlos!"
+
+msgid ""
+"If both a customer and a role restriction are supplied, matching either one "
+"of them will suffice."
+msgstr ""
+"Wenn sowohl eine Kunden- als auch eine Rollenbeschränkung ausgewählt wurden, "
+"genügt eine passende."
+
+msgid "Individual use"
+msgstr "Individuelle Nutzung"
+
+msgid "Limit discount to"
+msgstr "Begrenze den Rabatt auf"
+
+msgid "Matching products"
+msgstr "Zutreffende Produkte"
+
+msgid ""
+"Maximum price subtotal of the products that match the given product or "
+"category restrictions (see tab 'usage restriction')."
+msgstr ""
+"Maximale Preis-Zwischensumme der Produkte, die die vorgegebenen Produkt- "
+"oder Kategorie-Einschränkungen erfüllen (siehe Tabulator "
+"\"Nutzungseinschränkungen\")."
+
+msgid "Maximum quantity of matching products"
+msgstr "Maximale Anzahl von passenden Produkten"
+
+msgid ""
+"Maximum quantity of the products that match the given product or category "
+"restrictions (see tab 'usage restriction'). If no product or category "
+"restrictions are specified, the total number of products is used."
+msgstr ""
+"Maximale Anzahl von Produkten, die die vorgegebenen Produkt- oder Kategorie-"
+"Einschränkungen erfüllen. Wenn keine Produkt oder Kategorie-Einschränkungen "
+"ausgewählt sind, wird die gesamte Anzahl von Produkten benutzt."
+
+msgid "Maximum subtotal of matching products"
+msgstr "Maximale Zwischensumme passender Produkte"
+
+msgid ""
+"Minimum price subtotal of the products that match the given product or "
+"category restrictions (see tab 'usage restriction')."
+msgstr ""
+"Minimale Preis-Zwischensumme der Produkte, die die vorgegebenen Produkt- "
+"oder Kategorie-Einschränkungen erfüllen (siehe Tabulator "
+"\"Nutzungseinschränkungen\")."
+
+msgid "Minimum quantity of matching products"
+msgstr "Minimale Anzahl passender Produkte"
+
+msgid ""
+"Minimum quantity of the products that match the given product or category "
+"restrictions (see tab 'usage restriction'). If no product or category "
+"restrictions are specified, the total number of products is used."
+msgstr ""
+"Minimale Anzahl von Produkten, die die vorgegebenen Produkt- oder Kategorie-"
+"Einschränkungen erfüllen. Wenn keine Produkt oder Kategorie-Einschränkungen "
+"ausgewählt sind, wird die gesamte Anzahl von Produkten benutzt."
+
+msgid "Minimum subtotal of matching products"
+msgstr "Minimale Zwischensumme passender Produkte"
+
+msgid "Miscellaneous"
+msgstr "Vermischtes"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "No maximum"
+msgstr "Kein Maximum"
+
+msgid "No minimum"
+msgstr "Kein Minimum"
+
+msgid "No priority"
+msgstr "Keine Priorität"
+
+msgid ""
+"One of these payment methods must be selected in order for this coupon to be "
+"valid."
+msgstr ""
+"Eine dieser Zahlungsarten muss ausgewählt sein, damit dieser Coupon wirksam "
+"wird."
+
+msgid ""
+"One of these shipping methods must be selected in order for this coupon to "
+"be valid."
+msgstr ""
+"Eine dieser Versandarten muss ausgewählt sein, damit dieser Coupon wirksam "
+"wird."
+
+msgid "Only these User Roles may use this coupon."
+msgstr "Nur diese Benutzerrollen dürfen den Coupon benutzen."
+
+msgid "Only these customers may use this coupon."
+msgstr "Nur diese Kunden dürfen den Coupon benutzen."
+
+msgid "Payment methods"
+msgstr "Zahlungsarten"
+
+msgid "Please choose your free gift:"
+msgstr "Bitte wählen Sie Ihr kostenloses Geschenk:"
+
+msgid ""
+"Please note that when the discount type is 'Product discount' (see 'General'-"
+"tab), the discount will only be applied to <em>matching</em> products."
+msgstr ""
+"Bitte beachten Sie, dass beim Rabatttyp \"Produktrabatt\" der Rabatt nur für "
+"<em>passende</em> Produkte verwendet wird."
+
+msgid "Please select your free gift."
+msgstr "Bitte wähle Dein kostenloses Geschenk."
+
+msgid "Priority"
+msgstr "Priorität"
+
+msgid "Products"
+msgstr "Produkte"
+
+msgid "Search for a product…"
+msgstr "Suche ein Produkt..."
+
+msgid "Select one"
+msgstr "Wähle einen"
+
+msgid "Shipping methods"
+msgstr "Versandmethoden"
+
+msgid "Sorry, it seems the coupon \"%s\" is not yours."
+msgstr ""
+"Entschuldigung, aber es sieht so aus als ob der Coupon %s nicht Ihnen gehört."
+
+msgid ""
+"The amount of free products is multiplied every time the minimum spend, "
+"subtotal or quantity is reached."
+msgstr ""
+"Die Summe kostenloser Produkte wird jedes mal multipliziert, wenn die "
+"minimale Summe, Zwischensumme oder Anzahl erreicht ist."
+
+msgid "The coupon is not valid for the currently selected payment method."
+msgstr "Der Coupon ist für die gewählte Zahlungsart nicht gültig."
+
+msgid "The coupon is not valid for the currently selected shipping method."
+msgstr "Der Coupon ist für die gewählte Versandart nicht gültig."
+
+msgid "The maximum quantity of matching products for this coupon is %s."
+msgstr "Die maximale Anzahl passender Produkte für diesen Coupon ist %s."
+
+msgid "The maximum subtotal of the matching products for this coupon is %s."
+msgstr "Die maximal Zwischensumme passender Produkte für diesen Coupon ist %s."
+
+msgid "The minimum quantity of matching products for this coupon is %s."
+msgstr "Die minimale Anzahl passender Produkte für diesen Coupon ist %s."
+
+msgid "The minimum subtotal of the matching products for this coupon is %s."
+msgstr ""
+"Die minimale Zwischensumme passender Produkte für diesen Coupon ist %s."
+
+msgid "These User Roles will be specifically excluded from using this coupon."
+msgstr ""
+"Diese Benutzerrollen speziell sind von der Nutzung des Coupons "
+"ausgeschlossen."
+
+msgid "This message is displayed when the customer must choose a free product."
+msgstr ""
+"Diese Nachricht wird angezeigt, wenn der Kunde eine kostenloses Produkt "
+"wählen muss."
+
+msgid ""
+"When 'individual use' is checked, auto coupons with a higher value will have "
+"priority over other auto coupons."
+msgstr ""
+"Wenn \"Individuelle Nutzung\" ausgewählt ist, haben Auto Coupons mit einem "
+"höheren Wert Priorität über andere Coupons."
+
+msgid "WooCommerce Extended Coupon Features Documentation"
+msgstr "Dokkumentation für WooCommerce \"Erweiterte Coupon Merkmale\""
+
+msgid ""
+"WooCommerce Extended Coupon Features is disabled because WooCommerce could "
+"not be detected."
+msgstr ""
+"WooCommerce \"Erweiterte Coupon Merkmale\" ist deaktiviert, weil WooCommerce "
+"nicht entdeckt wurde."
+
+msgid "Yes"
+msgstr "Ja"

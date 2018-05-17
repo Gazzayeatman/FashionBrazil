@@ -7,76 +7,70 @@
  * @package storefront
  */
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-    <head>
-        <meta charset="<?php bloginfo( 'charset' ); ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-        <link rel="profile" href="http://gmpg.org/xfn/11">
-        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-        <link rel="stylesheet" href="http://garry.local/wp-content/themes/FashionBrazilShop/font-awesome/css/font-awesome.min.css">
-        <link href="http://garry.local/wp-content/themes/FashionBrazilShop/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <?php wp_head(); ?>
-    </head>
+<head>
+    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W6XKJ9P');</script>
+        <!-- End Google Tag Manager -->
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <link rel="stylesheet" href="https://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/style.css">
+    <link href="https://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <?php wp_head(); ?>
+   
+</head>
 <body <?php body_class(); ?>>
-    <div id="page" class="hfeed site">
-        <?php
-            do_action( 'storefront_before_header' ); 
-            /**
-            * Functions hooked into storefront_header action
-            *
-            * @hooked storefront_skip_links                       - 0
-            * @hooked storefront_social_icons                     - 10
-            * @hooked storefront_site_branding                    - 20
-            * @hooked storefront_secondary_navigation             - 30
-            * @hooked storefront_product_search                   - 40
-            * @hooked storefront_primary_navigation_wrapper       - 42
-            * @hooked storefront_primary_navigation               - 50
-            * @hooked storefront_header_cart                      - 60
-            * @hooked storefront_primary_navigation_wrapper_close - 68
-            */
-            //do_action( 'storefront_header' ); 
-        ?>
-    </div>
-
-	<?php
-	/**
-	 * Functions hooked in to storefront_before_content
-	 *
-	 * @hooked storefront_header_widget_region - 10
-	 */
-	do_action( 'storefront_before_content' ); ?>
-    <div class="container-fluid header-container">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6XKJ9P"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container-fluid top-header">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-xs-4 logo">
-                    <a href="/"><img src="http://garry.local/wp-content/themes/FashionBrazilShop/assets/logo_small.jpg" /></a>
-                </div>
-                <div class="col-md-10 col-xs-8 title">
-                    <h1>Fashion Brazil</h1>
-                    <div class="social-icons">
+                <div class="col-sm-6 hidden-xs col-md-4">
+                    <div class="header-social-icons">
                         <ul>
-                            <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
+                            <li><a target="_blank" href="http://www.facebook.com/fashionbrazilausnz"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                            <li><a target="_blank" href="http://www.twitter.com/fashion_brazil"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a target="_blank" href="https://instagram.com/fashionbrazilausnz"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a target="_blank" href="https://nz.pinterest.com/fbausnz/"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
+                </div>
+                <div class="col-sm-5 free-shipping hidden-xs hidden-sm col-md-4">
+                    <h4><a href="/information/shipping/">*FREE SHIPPING IN NEW ZEALAND AND AUSTRALIA</a></h4>
+                </div>
+                <div class="col-sm-6 col-xs-12 col-md-4">
+                    <div class="header-social-icons pull-right">
+                        <?php wp_nav_menu( array( 'theme_location' => 'top_right' ) ); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid header-container">
+        <div class="container">
+            <div class="row center-header">
+                <div class="col-md-12 col-xs-12 logo title">
+                    <a href="/"><img src="http://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/assets/logo_small.jpg" /></a>
+                    <h1>Fashion Brazil</h1>
                 </div>
             </div>
         </div>
             <nav class="navbar navbar-default">
                 <div class="container">
                     <ul class="nav navbar-nav">
-                        <?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
+                        <?php wp_nav_menu( array( 'theme_location' => 'Main' ) ); ?>
                     </ul>
-                    <div class="cart">
-                        <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
-                    </div>
-                    <div class="search">
-                        <i class="fa fa-search" aria-hidden="true"></i> Search
-                    </div>
                 </div>
             </nav>
         </div>

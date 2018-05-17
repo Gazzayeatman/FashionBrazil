@@ -60,8 +60,8 @@ class WC_Admin_Dynamic_Gallery_Page extends WC_Dynamic_Gallery_Admin_UI
 		$page_data = array(
 			'type'				=> 'submenu',
 			'parent_slug'		=> 'woocommerce',
-			'page_title'		=> __( 'Dynamic Gallery', 'woo_dgallery' ),
-			'menu_title'		=> __( 'Dynamic Gallery', 'woo_dgallery' ),
+			'page_title'		=> __( 'Dynamic Gallery', 'woocommerce-dynamic-gallery' ),
+			'menu_title'		=> __( 'Dynamic Gallery', 'woocommerce-dynamic-gallery' ),
 			'capability'		=> 'manage_options',
 			'menu_slug'			=> $this->menu_slug,
 			'function'			=> 'wc_admin_dgallery_page_show',

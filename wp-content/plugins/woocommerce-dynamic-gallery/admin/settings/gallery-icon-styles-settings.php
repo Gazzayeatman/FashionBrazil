@@ -78,9 +78,9 @@ class WC_Dynamic_Gallery_Icon_Styles_Settings extends WC_Dynamic_Gallery_Admin_U
 		$this->subtab_init();
 		
 		$this->form_messages = array(
-				'success_message'	=> __( 'Dynamic Gallery Icon Styles successfully saved.', 'woo_dgallery' ),
-				'error_message'		=> __( 'Error: Dynamic Gallery Icon Styles can not save.', 'woo_dgallery' ),
-				'reset_message'		=> __( 'Dynamic Gallery Icon Styles successfully reseted.', 'woo_dgallery' ),
+				'success_message'	=> __( 'Dynamic Gallery Icon Styles successfully saved.', 'woocommerce-dynamic-gallery' ),
+				'error_message'		=> __( 'Error: Dynamic Gallery Icon Styles can not save.', 'woocommerce-dynamic-gallery' ),
+				'reset_message'		=> __( 'Dynamic Gallery Icon Styles successfully reseted.', 'woocommerce-dynamic-gallery' ),
 			);
 		
 		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_end', array( $this, 'include_script' ) );
@@ -135,7 +135,7 @@ class WC_Dynamic_Gallery_Icon_Styles_Settings extends WC_Dynamic_Gallery_Admin_U
 		
 		$subtab_data = array( 
 			'name'				=> 'gallery-icon-styles',
-			'label'				=> __( 'Icon Styles', 'woo_dgallery' ),
+			'label'				=> __( 'Icon Styles', 'woocommerce-dynamic-gallery' ),
 			'callback_function'	=> 'wc_dgallery_icon_styles_settings_form',
 		);
 		
@@ -179,7 +179,7 @@ class WC_Dynamic_Gallery_Icon_Styles_Settings extends WC_Dynamic_Gallery_Admin_U
      	$this->form_fields = apply_filters( $this->option_name . '_settings_fields', array(
 
 			array(
-            	'name' 		=> __( "GALLERY ICONS STYLE SUPER POWERS", 'woo_dgallery' ),
+            	'name' 		=> __( "GALLERY ICONS STYLE SUPER POWERS", 'woocommerce-dynamic-gallery' ),
                 'type' 		=> 'heading',
                 'desc'		=> '<img class="rwd_image_maps" src="'.WOO_DYNAMIC_GALLERY_IMAGES_URL.'/icon_styles_tab.png" usemap="#productCardsMap" style="width: auto; max-width: 100%;" border="0" />
 <map name="productCardsMap" id="productCardsMap">
