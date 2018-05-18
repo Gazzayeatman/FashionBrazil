@@ -699,3 +699,20 @@ h4 {
     min-height: 400px !important;
     max-height: 400px !important;
 }
+
+.simple_container .simple_message {
+    background-color: #209ED8 !important;
+    color: #FFFFFF !important;
+}
+
+.simple_add_to_favourites {
+    color: #FFFFFF !important;
+    background-color: #209ED8 !important;
+    border: 0px !important;
+}
+
+.simple_add_to_favourites:hover {
+    color: #FFFFFF !important;
+    background-color: #FEDF00 !important;
+    border: 0px !important;
+}

@@ -22,9 +22,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-    <link rel="stylesheet" href="https://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/style.css">
-    <link href="https://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fashionbrazil.local/wp-content/themes/FashionBrazilShop/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fashionbrazil.local/wp-content/themes/FashionBrazilShop/style.css">
+    <link href="https://fashionbrazil.local/wp-content/themes/FashionBrazilShop/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <?php wp_head(); ?>
    
 </head>
@@ -61,7 +61,7 @@
         <div class="container">
             <div class="row center-header">
                 <div class="col-md-12 col-xs-12 logo title">
-                    <a href="/"><img src="http://fashionbrazil.co.nz/wp-content/themes/FashionBrazilShop/assets/logo_small.jpg" /></a>
+                    <a href="/"><img src="http://fashionbrazil.local/wp-content/themes/FashionBrazilShop/assets/logo_small.jpg" /></a>
                     <h1>Fashion Brazil</h1>
                 </div>
             </div>
