@@ -21,7 +21,7 @@
             echo '<div class="row">';
             echo '<div class="col-md-9">';
         } else {
-            echo '<div class="row no-search">';            
+            echo '<div class="row no-search">';
             echo '<div class="col-md-12">';
         }
     ?>
