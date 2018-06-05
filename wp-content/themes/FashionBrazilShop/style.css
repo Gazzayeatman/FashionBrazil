@@ -722,3 +722,7 @@ h4 {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
 }
+
+#simple_favourites_display > h2 {
+    display: none !important;
+}
