@@ -705,14 +705,20 @@ h4 {
     color: #FFFFFF !important;
 }
 
-.simple_add_to_favourites {
+.simple_add_to_favourites, .simple-remove-from-favourites {
     color: #FFFFFF !important;
     background-color: #209ED8 !important;
     border: 0px !important;
 }
 
-.simple_add_to_favourites:hover {
+.simple_add_to_favourites:hover, .simple-remove-from-favourites:hover {
     color: #FFFFFF !important;
     background-color: #FEDF00 !important;
     border: 0px !important;
+}
+
+.simple-remove-from-favourites {
+    padding: 10px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
