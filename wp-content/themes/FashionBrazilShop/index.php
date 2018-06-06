@@ -3,8 +3,8 @@
  * Template Name: Home Page Index
  */
 get_header(); ?> 
-<div class="container-fluid home-page">
-    <?php echo do_shortcode('[metaslider id="3113"]'); ?>
+<div class="container-fluid new-carousel home-page">
+    <?php echo do_shortcode('[metaslider id="3118"]'); ?>
         <div class="container padding-40">
             <div class="row">
                 <div class="col-md-12 laybuy-banner">
