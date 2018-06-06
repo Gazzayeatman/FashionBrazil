@@ -214,6 +214,10 @@ body {
     display: none;
 }
 
+.new-carousel {
+    margin-top: -20px !important;
+}
+
 .carousel-control.left, .carousel-control.right {
     background: none!important;
 }
