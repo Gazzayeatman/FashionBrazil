@@ -4,7 +4,7 @@
  */
 get_header(); ?> 
 <div class="container-fluid home-page">
-    <?php echo do_shortcode('[image-carousel]'); ?>
+    <?php echo do_shortcode('[metaslider id="3113"]'); ?>
         <div class="container padding-40">
             <div class="row">
                 <div class="col-md-12 laybuy-banner">
@@ -79,6 +79,7 @@ get_header(); ?>
             </div>
         </div>
     </div>
+</div>
 <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us13.list-manage.com","uuid":"9e7f103fef2e73a2ab6db5563","lid":"31796dad68"}) })</script>
 <!-- Facebook Pixel Code -->
 <script>
