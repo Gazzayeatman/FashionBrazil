@@ -45,7 +45,7 @@
         </div>
     </div>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://fashionbrazil.local/wp-content/themes/FashionBrazilShop/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://fashionbrazil.yeatman.co.nz/wp-content/themes/FashionBrazilShop/bootstrap/js/bootstrap.min.js"></script>
     <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6XKJ9P"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
