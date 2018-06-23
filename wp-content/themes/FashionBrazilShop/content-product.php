@@ -71,7 +71,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		?>
 		<p>
 			<img class="laybuy-icon" src="<?php echo get_template_directory_uri(); ?>/assets/ico-laybuy.png" /> <strong>Buy now and pay $<?php echo round($product->get_price()/6, 2); ?> over 6 weeks with Laybuy</strong><br />
-			<img class="laybuy-icon" src="<?php echo get_template_directory_uri(); ?>/assets/afterpay-logo.jpg" /> <strong>Buy now and pay $<?php echo round($product->get_price()/4, 2); ?> over 4 weeks with Afterpay (AU Only)</strong>
+			<img class="laybuy-icon" src="<?php echo get_template_directory_uri(); ?>/assets/afterpay-logo.jpg" /> <strong>Buy now and pay $<?php echo round($product->get_price()/4, 2); ?> over 4 weeks with Afterpay</strong>
 		</p>
 	</li>
 </div>
