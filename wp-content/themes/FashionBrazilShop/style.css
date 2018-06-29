@@ -758,3 +758,19 @@ h4 {
     border-bottom: 3px solid #209ED8;
     padding: 20px;
 }
+
+.line-header {
+    border-bottom: 1px solid #209ED8;
+    overflow: visible;
+    line-height: 17px;
+    height: 15px;
+    margin: 30px auto 40px;
+    text-align: center;
+    width: 97.9166666666666667%;
+    text-transform: uppercase;
+}
+
+.line-header span {
+    background: #ffffff;
+    padding: 10px;
+}
