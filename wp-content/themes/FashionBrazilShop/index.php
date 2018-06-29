@@ -48,8 +48,10 @@ get_header(); ?>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>
-                            <i class="fa fa-heart"></i> Whats hot right now
+                        <h2 class="line-header">
+                            <span>
+                                <i class="fa fa-heart"></i> Whats hot right now
+                            </span>
                         </h2>
                     </div>
                 </div>
@@ -69,8 +71,10 @@ get_header(); ?>
         <div class="container padding-40">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>
-                        <i class="fa fa-instagram" aria-hidden="true"></i> Follow our instagram
+                    <h2 class="line-header">
+                        <span>
+                            <i class="fa fa-instagram" aria-hidden="true"></i> Follow our instagram
+                        </span>
                     </h2>
                     <?php echo do_shortcode('[instagram-feed]'); ?>
                 </div>
