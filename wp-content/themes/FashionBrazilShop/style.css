@@ -732,8 +732,6 @@ h4 {
 }
 
 .featured-row {
-    overflow: scroll !important;
-    max-height: 800px;
     background-color: #FFFFFF !important;
     padding: 20px;
 }

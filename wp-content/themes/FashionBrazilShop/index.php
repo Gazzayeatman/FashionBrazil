@@ -17,9 +17,9 @@ get_header(); ?>
         <div class="container padding-40">
             <div class="row">
                 <?php
-                    $my_query = new WP_Query( 'cat=11' );
-                    if ( $my_query->have_posts() ) { 
-                        while ( $my_query->have_posts() ) {
+                    $my_query = new WP_Query('cat=11');
+                    if ($my_query->have_posts()) { 
+                        while ($my_query->have_posts()) {
                             $my_query->the_post();
                             $linkTo = get_field("link_to");
                             echo '
@@ -45,35 +45,33 @@ get_header(); ?>
             </div>
         </div>
         <div class="container-fluid">
-            <div class="container featured-home-page">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="container">
-                            <div class="row underlined">
-                                <div class="col-md-12">
-                                    <h2><i class="fa fa-heart"></i> Whats hot right now</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="container featured-row">
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12 padding-20">
-                                        <?php
-                                            echo do_shortcode('[featured_products per_page="12"]');
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
+                        <h2>
+                            <i class="fa fa-heart"></i> Whats hot right now
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="container featured-row">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 padding-20">
+                            <?php
+                                echo do_shortcode('[featured_products per_page="12"]');
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container padding-40">
-            <div class="row underlined">
+            <div class="row">
                 <div class="col-md-12">
-                    <h2><i class="fa fa-instagram" aria-hidden="true"></i> Follow our instagram</h2>
+                    <h2>
+                        <i class="fa fa-instagram" aria-hidden="true"></i> Follow our instagram
+                    </h2>
                     <?php echo do_shortcode('[instagram-feed]'); ?>
                 </div>
             </div>
