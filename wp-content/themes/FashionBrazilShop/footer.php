@@ -11,11 +11,11 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <h3>About Fashion Brazil</h3>
-                        <?php wp_nav_menu( array( 'theme_location' => 'Information' ) ); ?>                        
+                        <?php wp_nav_menu( array( 'theme_location' => 'Information' ) ); ?>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <h3>Brands</h3>
-                        <?php wp_nav_menu( array( 'theme_location' => 'Brands' ) ); ?>                                                
+                        <?php wp_nav_menu( array( 'theme_location' => 'Brands' ) ); ?>
                     </div>
                 </div>
                 <div class="row">
@@ -45,7 +45,7 @@
         </div>
     </div>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://fashionbrazil.yeatman.co.nz/wp-content/themes/FashionBrazilShop/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/bootstrap/js/bootstrap.min.js"></script>
     <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6XKJ9P"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
