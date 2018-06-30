@@ -152,6 +152,7 @@ body {
 .footer {
     background-color: #23282D !important;
     color: #FFFFFF !important;
+    padding: 20px;
 }
 .footer .row {
     margin-top: 20px;
@@ -324,6 +325,10 @@ h2, h1, h3, h4 {
 .header-social-icons > ul > li > a:hover {
     color: #FEDF00 !important;
     font-size: 1.3em;
+}
+
+.currency {
+    font-weight: bold;
 }
 
 .menu-top-right-menu-container a .menu-item .fa, .empty-wpmenucart-visible, .wpmenucart-icon-shopping-cart-0 {
