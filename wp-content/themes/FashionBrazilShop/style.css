@@ -784,3 +784,19 @@ ul.sub-menu li {
 .header-social-icons ul, .free-shipping h4 {
     margin: 0 !important;
 }
+
+.nav-tabs {
+    margin: 0px !important;
+}
+
+.nav-tabs li {
+    padding: 10px;
+}
+
+.tab-pane {
+    padding: 20px;
+}
+
+.nav-tabs .active {
+    color: #FEDF00;
+}

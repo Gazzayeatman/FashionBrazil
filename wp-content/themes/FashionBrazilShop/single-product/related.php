@@ -49,15 +49,20 @@ if ( $products->have_posts() ) : ?>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="related products">
-					<h2><?php _e( 'Related Products', 'woocommerce' ); ?></h2>
-					<?php woocommerce_product_loop_start(); ?>
-						<?php while ( $products->have_posts() ) : $products->the_post(); ?>
-							<?php wc_get_template_part( 'content', 'product' ); ?>
-						<?php endwhile; // end of the loop. ?>
-					<?php woocommerce_product_loop_end(); ?>
-
-				</div>
+				<h2 class="line-header">
+					<span>
+						<i class="fa fa-heart"></i> <?php _e( 'Related Products', 'woocommerce' ); ?>
+					</span>
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<?php woocommerce_product_loop_start(); ?>
+					<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+						<?php wc_get_template_part( 'content', 'product' ); ?>
+					<?php endwhile; // end of the loop. ?>
+				<?php woocommerce_product_loop_end(); ?>
 			</div>
 		</div>
 	</div>
