@@ -26,3 +26,4 @@
         }
     ?>
         <ul class="products">
+            <div class="row">
