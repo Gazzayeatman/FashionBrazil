@@ -95,15 +95,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 <div class="col-md-12">
                                     <p>
                                         <?php
-                                            $my_query = new WP_Query([
-                                                'cat=146'
-                                            ]);
-                                            if ($my_query->have_posts()) { 
-                                                while ($my_query->have_posts()) {
-                                                    $my_query->the_post();
-                                                    the_content();
-                                                }
-                                            }
+                                            $args = [
+                                                'category_name' => 'delivery'
+                                            ];
+
+                                            $myposts = get_posts($args);
+                                            foreach ($myposts as $post) : setup_postdata($post); ?>
+                                                <?php echo the_content(); ?>
+                                            <?php endforeach; 
                                             wp_reset_postdata();
                                         ?>
                                     </p>
@@ -116,15 +115,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 <div class="col-md-12">
                                     <p>
                                         <?php
-                                            $my_query = new WP_Query([
-                                                'cat=147'
-                                            ]);
-                                            if ($my_query->have_posts()) { 
-                                                while ($my_query->have_posts()) {
-                                                    $my_query->the_post();
-                                                    the_content();
-                                                }
-                                            }
+                                            $args = [
+                                                'category_name' => 'returns'
+                                            ];
+
+                                            $myposts = get_posts($args);
+                                            foreach ($myposts as $post) : setup_postdata($post); ?>
+                                                <?php echo the_content(); ?>
+                                            <?php endforeach; 
                                             wp_reset_postdata();
                                         ?>
                                     </p>
