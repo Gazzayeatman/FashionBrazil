@@ -34,49 +34,67 @@
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="container-fluid top-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 hidden-xs col-md-4">
-                    <div class="header-social-icons">
-                        <ul>
-                            <li><a target="_blank" href="http://www.facebook.com/fashionbrazilausnz"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                            <li><a target="_blank" href="http://www.twitter.com/fashion_brazil"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a target="_blank" href="https://instagram.com/fashionbrazilausnz"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            <li><a target="_blank" href="https://nz.pinterest.com/fbausnz/"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-5 free-shipping hidden-xs hidden-sm col-md-4">
-                    <h4><a href="/information/shipping/">*FREE SHIPPING IN NEW ZEALAND AND AUSTRALIA</a></h4>
-                </div>
-                <div class="col-sm-6 col-xs-12 col-md-4">
-                    <div class="header-social-icons pull-right">
-                        <?php 
-                            wp_nav_menu([
-                                'theme_location' => 'top_right'
-                            ]); 
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid header-container">
-        <div class="container">
-            <div class="row center-header">
-                <div class="col-md-12 col-xs-12 logo title">
-                    <a href="/"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/logo_small.jpg" /></a>
-                    <h1>Fashion Brazil</h1>
-                </div>
-            </div>
-        </div>
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <ul class="nav navbar-nav">
-                        <?php wp_nav_menu( array( 'theme_location' => 'Main' ) ); ?>
+        <div class="row">
+            <div class="col-sm-6 d-none d-sm-none col-md-4 d-md-block align-self-center">
+                <div class="header-social-icons">
+                    <ul>
+                        <li>
+                            <a target="_blank" href="http://www.facebook.com/fashionbrazilausnz">
+                                <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://www.twitter.com/fashion_brazil">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://instagram.com/fashionbrazilausnz">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://nz.pinterest.com/fbausnz/">
+                                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </nav>
+            </div>
+            <div class="col-sm-6 free-shipping d-sm-none d-md-block d-none col-md-4 align-self-center">
+                <h4><a href="/information/shipping/">*FREE SHIPPING WORLDWIDE</a></h4>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-md-4 align-self-center">
+                <div class="header-social-icons pull-right">
+                    <?php 
+                        wp_nav_menu([
+                            'theme_location' => 'top_right'
+                        ]); 
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
-    
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row center-header">
+                <div class="col-md-12 col-xs-12 logo title align-self-center">
+                    <a href="/"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/logo_small.jpg" /></a>
+                    <h1>
+                        Fashion Brazil
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default">
+            <div class="container nav-container">
+                <ul class="nav navbar-nav">
+                    <?php 
+                        wp_nav_menu([
+                            'theme_location' => 'Main']
+                        );
+                    ?>
+                </ul>
+            </div>
+        </nav>
+    </div>
