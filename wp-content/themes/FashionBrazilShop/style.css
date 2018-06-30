@@ -52,11 +52,15 @@ body {
     max-height: 400px;
 }
 .navbar {
-    border: 0px;    
+    border: 0px;
+    text-align: center;
 }
-.navbar > .container {
-    margin-top: 10px;
+
+.navbar .navbar-nav {
+    text-align: center;
+    margin-left: 0px;
 }
+
 .navbar .navbar-nav li a {
     font-size: 1.2em !important;
 }
@@ -111,14 +115,19 @@ body {
 }
 .logo img {
     width: 80px;
-    margin-bottom: 25px;
     float: left;
+}
+.logo.title {
+    padding: 25px;
+}
+.logo h1 {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
 .title h1 {
     display: inline-block;
-}
-.logo {
-    margin-top: 20px;
 }
 .center-header {
     text-align: center;
@@ -214,10 +223,6 @@ body {
     display: none;
 }
 
-.new-carousel {
-    margin-top: -20px !important;
-}
-
 .carousel-control.left, .carousel-control.right {
     background: none!important;
 }
@@ -295,18 +300,20 @@ h2, h1, h3, h4 {
     color: #FFFFFF!important;
 }
 
-.top-header {
+.container-fluid.top-header {
     background-color: #209ED8;
     color: #FFFFFF;
-    height: 40px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.nav-container .navbar-nav {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .header-social-icons ul li {
     display: inline-block;
-}
-
-.header-social-icons, .top-right-menu {
-    padding-top: 5px;
 }
 
 .header-social-icons > ul > li > a {
@@ -341,7 +348,6 @@ h2, h1, h3, h4 {
 
 .free-shipping {
     text-align: center;
-    padding-top: 10px;
 }
 
 .free-shipping h4 {
@@ -658,11 +664,6 @@ ul.sub-menu li {
     width: 100% !important;
 }
 
-h4 {
-    display: inline-block !important;
-    margin-top: 0px !important;
-}
-
 .wc-terms-and-conditions .checkbox {
 	display: inline-block !important;
 }
@@ -773,4 +774,8 @@ h4 {
 .line-header span {
     background: #ffffff;
     padding: 10px;
+}
+
+.header-social-icons ul, .free-shipping h4 {
+    margin: 0 !important;
 }
