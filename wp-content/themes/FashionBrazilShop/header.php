@@ -71,6 +71,27 @@
                             'theme_location' => 'top_right'
                         ]); 
                     ?>
+                    <ul class="menu-top-right pull-right">
+                        <li class="currency">
+                            <?php
+                                $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+                                if ($ip_data && $ip_data->geoplugin_countryName != null) {
+                                    $result['country'] = $ip_data->geoplugin_countryCode;
+                                }
+                                switch ($result['country']) {
+                                    case 'NZ':
+                                        echo '$NZD';
+                                        break;
+                                    case 'AU':
+                                        echo '$AUS';
+                                        break;
+                                    default:
+                                        echo '$NZD';
+                                        break;
+                                }
+                            ?>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
