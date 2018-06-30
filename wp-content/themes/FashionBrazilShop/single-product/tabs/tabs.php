@@ -26,34 +26,3 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Each tab is an array containing title, callback and priority.
  * @see woocommerce_default_product_tabs()
  */
-$tabs = apply_filters( 'woocommerce_product_tabs', array() );
-
-if ( ! empty( $tabs ) ) : ?>
-	<div class="woocommerce-tabs wc-tabs-wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 collapse-button">
-					<a class="pull-right" href="#collapseOne" data-toggle="collapse">Additional Information <span><i class="fa fa-plus" aria-hidden="true"></i></span></a>
-				</div>
-			</div>
-			<div id="collapseOne" class="row collapse">
-				<div class="col-md-4">
-					<ul class="tabs wc-tabs">
-						<?php foreach ( $tabs as $key => $tab ) : ?>
-							<li class="<?php echo esc_attr( $key ); ?>_tab">
-								<a href="#tab-<?php echo esc_attr( $key ); ?>"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></a>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-				<div class="col-md-8">
-					<?php foreach ( $tabs as $key => $tab ) : ?>
-						<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>">
-							<?php call_user_func( $tab['callback'], $key, $tab ); ?>
-						</div>
-					<?php endforeach; ?>
-				</div>
-			</div>
-		</div>
-	</div>
-<?php endif; ?>
