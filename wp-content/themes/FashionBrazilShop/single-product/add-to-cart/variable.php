@@ -64,7 +64,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                             </div>
                             <div class="modal-body">
                                 <?php 
-                                    $brand = get_term_by('name', 'Rola Moca', 'pa_brand');
+                                    $brand = get_term_by('name', $product->get_attribute('pa_brand'), 'pa_brand');
                                     $sizeChart = get_field('size_chart', $brand->taxonomy . '_' . $brand->term_id);
                                     echo '<img src="'.$sizeChart['url'].'" />';
                                 ?>
