@@ -23,7 +23,7 @@ get_header(); ?>
                             $my_query->the_post();
                             $linkTo = get_field("link_to");
                             echo '
-                                <div class="col-md-4 col-sm-4 padding-20">
+                                <div class="col-md-4 col-sm-12 col-xs-12 padding-20">
                                     <a href="'.$linkTo.'">
                                         <div class="featured-box" style="background:url('.get_the_post_thumbnail_url().') no-repeat">
                                             <div class="outline">
@@ -60,9 +60,33 @@ get_header(); ?>
                 <div class="container featured-row">
                     <div class="row">
                         <div class="col-md-12 col-sm-12 padding-20">
-                            <?php
-                                echo do_shortcode('[featured_products per_page="12"]');
-                            ?>
+                            <div class="row">
+                                <?php
+                                    $meta_query   = WC()->query->get_meta_query();
+                                    $meta_query = [
+                                        'key'   => '_featured',
+                                        'value' => 'yes'
+                                    ];
+                                    $args = [
+                                        'post_type'   =>  'product',
+                                        'stock'       =>  1,
+                                        'showposts'   =>  6,
+                                        'orderby'     =>  'date',
+                                        'order'       =>  'DESC',
+                                        'meta_query'  =>  $meta_query
+                                    ];
+
+                                    $loop = new WP_Query($args);
+                                    if ($loop->have_posts()) {
+                                        while ($loop->have_posts()) : $loop->the_post();
+                                            wc_get_template_part('content', 'product');
+                                        endwhile;
+                                    } else {
+                                        echo __('No products found');
+                                    }
+                                    wp_reset_postdata();
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
