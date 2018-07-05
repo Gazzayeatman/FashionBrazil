@@ -16,62 +16,63 @@
  * @version 2.6.1
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
 }
 
 global $product;
 
-// Ensure visibility
-if ( empty( $product ) || ! $product->is_visible() ) {
-	return;
+if (empty($product) || !$product->is_visible()) {
+    return;
+}
+
+$pageType = $wp->request;
+
+if (!$pageType) {
+    echo '<div class="col-md-6 col-sm-6 col-lg-3 col-xs-12">';
+        echo '<div class="product-cell">';
+            global $product;
+            $link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $product);
+            echo '<a href="'.esc_url($link).'" target="_blank" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
+                echo '<div class="image">';
+                    if ($product->is_on_sale()) {
+                        echo apply_filters('woocommerce_sale_flash', '<span class="onsale">' . __('Sale!', 'woocommerce') . '</span>', $post, $product);
+                    }
+                    echo woocommerce_get_product_thumbnail();
+                echo '</div>';
+                echo '<div class="details">';
+                    echo '<div class="title">';
+                        echo '<h4 class="woocommerce-loop-product__title">'.get_the_title().'</h4>';
+                    echo '</div>';
+                    echo '<div class="price">';
+                        wc_get_template('loop/price.php');
+                    echo '</div>';
+                echo '</div>';
+            echo '</a>';
+        echo '</div>';
+    echo '</div>';
+} else {
+    echo '<div class="col-md-6 col-sm-6 col-lg-3 col-xs-12">';
+        echo '<div class="product-cell">';
+            global $product;
+            $link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $product);
+            echo '<a href="'.esc_url($link).'" target="_blank" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
+                echo '<div class="image">';
+                    if ($product->is_on_sale()) {
+                        echo apply_filters('woocommerce_sale_flash', '<span class="onsale">' . __('Sale!', 'woocommerce') . '</span>', $post, $product);
+                    }
+                    echo woocommerce_get_product_thumbnail();
+                echo '</div>';
+                echo '<div class="details">';
+                    echo '<div class="title">';
+                        echo '<h4 class="woocommerce-loop-product__title">'.get_the_title().'</h4>';
+                    echo '</div>';
+                    echo '<div class="price">';
+                        wc_get_template('loop/price.php');
+                    echo '</div>';
+                echo '</div>';
+            echo '</a>';
+        echo '</div>';
+    echo '</div>';
 }
 ?>
-<div class="col-md-4">
-	<li <?php post_class(); ?>>
-		<?php
-		/**
-		* woocommerce_before_shop_loop_item hook.
-		*
-		* @hooked woocommerce_template_loop_product_link_open - 10
-		*/
-		do_action( 'woocommerce_before_shop_loop_item' );
-
-		/**
-		* woocommerce_before_shop_loop_item_title hook.
-		*
-		* @hooked woocommerce_show_product_loop_sale_flash - 10
-		* @hooked woocommerce_template_loop_product_thumbnail - 10
-		*/
-		
-		do_action( 'woocommerce_before_shop_loop_item_title' );
-
-		/**
-		* woocommerce_shop_loop_item_title hook.
-		*
-		* @hooked woocommerce_template_loop_product_title - 10
-		*/
-		do_action( 'woocommerce_shop_loop_item_title' );
-
-		/**
-		* woocommerce_after_shop_loop_item_title hook.
-		*
-		* @hooked woocommerce_template_loop_rating - 5
-		* @hooked woocommerce_template_loop_price - 10
-		*/
-		do_action( 'woocommerce_after_shop_loop_item_title' );
-
-		/**
-		* woocommerce_after_shop_loop_item hook.
-		*
-		* @hooked woocommerce_template_loop_product_link_close - 5
-		* @hooked woocommerce_template_loop_add_to_cart - 10
-		*/
-		do_action( 'woocommerce_after_shop_loop_item' );
-		?>
-		<p>
-			<img class="laybuy-icon" src="<?php echo get_template_directory_uri(); ?>/assets/ico-laybuy.png" /> <strong>Buy now and pay $<?php echo round($product->get_price()/6, 2); ?> over 6 weeks with Laybuy</strong><br />
-			<img class="laybuy-icon" src="<?php echo get_template_directory_uri(); ?>/assets/afterpay-logo.jpg" /> <strong>Buy now and pay $<?php echo round($product->get_price()/4, 2); ?> over 4 weeks with Afterpay</strong>
-		</p>
-	</li>
-</div>
