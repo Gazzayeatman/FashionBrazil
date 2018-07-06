@@ -52,7 +52,7 @@ if (!$pageType) {
         echo '</div>';
     echo '</div>';
 } else {
-    echo '<div class="col-md-6 col-sm-6 col-lg-3 col-xs-12">';
+    echo '<div class="col-md-6 col-sm-6 col-lg-4 col-xs-12">';
         echo '<div class="product-cell">';
             global $product;
             $link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $product);
