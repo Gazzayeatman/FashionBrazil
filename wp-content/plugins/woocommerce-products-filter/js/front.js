@@ -20,13 +20,13 @@ jQuery(function ($) {
 
     //+++
 
-    if (jQuery('#woof_results_by_ajax').length > 0) {
-	woof_is_ajax = 1;
-    }
+    // if (jQuery('#woof_results_by_ajax').length > 0) {
+	// woof_is_ajax = 1;
+    // }
 
-    //listening attributes in shortcode [woof]
-    woof_autosubmit = parseInt(jQuery('.woof').eq(0).data('autosubmit'), 10);
-    woof_ajax_redraw = parseInt(jQuery('.woof').eq(0).data('ajax-redraw'), 10);
+    // //listening attributes in shortcode [woof]
+    // woof_autosubmit = parseInt(jQuery('.woof').eq(0).data('autosubmit'), 10);
+    // woof_ajax_redraw = parseInt(jQuery('.woof').eq(0).data('ajax-redraw'), 10);
 
 
 

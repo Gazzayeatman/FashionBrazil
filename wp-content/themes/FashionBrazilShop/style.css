@@ -376,10 +376,6 @@ h2, h1, h3, h4 {
     min-height: 650px;
 }
 
-.products .col-md-4 {
-    min-height: 550px !important;
-}
-
 .woocommerce-info a {
     color: #FFFFFF;
 }
@@ -829,7 +825,12 @@ li.product.type-product {
 }
 
 .product-cell .details {
-    min-height: 100px;
+    min-height: 80px;
+}
+
+.product-cell .details .title {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .onsale {
@@ -844,9 +845,17 @@ li.product.type-product {
     text-align: right;
 }
 
+.add-ons {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-bottom: 20px;
+    bottom: 0;
+}
+
 @media screen and (max-width: 1199px) and (min-width: 992px) {
     .product-cell {
-        height: 400px;
+        height: 480px;
         border: 1px solid #209ED8 !important;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -862,7 +871,7 @@ li.product.type-product {
     }
     
     .product-cell .details {
-        min-height: 100px;
+        min-height: 80px;
     }
     
     .onsale {
@@ -872,6 +881,44 @@ li.product.type-product {
         margin-right: 30px;
         margin-top: 20px;
     }
+}
+
+.add-ons .afterpay img, .add-ons .laybuy img {
+    cursor: pointer !important;
+ }
+
+@media screen and (max-width: 768px) {
+    .add-ons {
+        text-align: center;
+        margin-bottom: 0px !important;
+        width: auto !important;
+        position: relative !important;
+        display: block;
+    }
+
+    .add-ons .col-md-4 {
+        padding: 5px;
+    }
+
+    .add-ons .afterpay img, .add-ons .laybuy img {
+       margin-left: auto;
+       margin-right: auto;
+       cursor: pointer !important;
+    }
+
+    .product-cell {
+        height: inherit;
+        border: 1px solid #209ED8 !important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .add-ons .afterpay img, .add-ons .laybuy img {
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer !important;
+     }
 }
 
 @media screen and (max-width: 575px) {
@@ -888,11 +935,11 @@ li.product.type-product {
     }
     
     .product-cell .image img {
-        max-height: 9000px;
+        max-height: 900px;
     }
     
     .product-cell .details {
-        min-height: 100px;
+        min-height: 80px;
     }
     
     .onsale {
@@ -902,6 +949,14 @@ li.product.type-product {
         margin-right: 30px;
         margin-top: 20px;
     }
+
+    .add-ons {
+        text-align: center;
+        width: 100%;
+        position: relative;
+        display: block;
+        margin-bottom: 20px;
+    }
 }
 
 .product-cell:hover {
@@ -909,7 +964,37 @@ li.product.type-product {
     border: 1px solid #FEDF00 !important;
 }
 
-.product .onsale {
+.product .onsale, .onsale {
     background-color: #FFFFFF !important;
     border: 1px solid #209ED8 !important;
+}
+
+a.simple_add_to_favourites, a.simple-remove-from-favourites:hover {
+    background: none !important;
+    color: #209ED8 !important;
+}
+
+a.simple_add_to_favourites:hover, a.simple-remove-from-favourites {
+    background: none !important;
+    color: #FEDF00 !important;
+}
+
+.add-ons {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-bottom: 20px;
+    bottom: 0;
+}
+
+.add-ons i {
+    font-size: 2em;
+}
+
+.add-ons img {
+    max-height: 40px;
+}
+
+.afterpay-price, .laybuy-price {
+    display: none;
 }
