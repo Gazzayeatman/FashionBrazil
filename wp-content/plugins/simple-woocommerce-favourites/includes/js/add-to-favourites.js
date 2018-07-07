@@ -21,9 +21,10 @@ jQuery(document).ready(function($){
 		});
 	});
 
-	$(document).on('click', '.simple-remove-from-favourites', function(){
-		var prod_id    = $(this).data().product_id;
-		if( isNaN(prod_id) ){
+	$(document).on('click', '.simple-remove-from-favourites', function(e){
+		e.preventDefault();
+		var prod_id = $(this).data().product_id;
+		if(isNaN(prod_id)){
 			return;
 		}
 		prod_id = parseInt(prod_id);

@@ -19,8 +19,7 @@
         </ul>
     </div>
     <?php 
-        if (is_home()) {
-        } else {
+        if (!is_home()) {
             echo '<div class="col-md-3">';
             echo do_shortcode('[widget id="woof_widget-4"]');
             echo '</div>';

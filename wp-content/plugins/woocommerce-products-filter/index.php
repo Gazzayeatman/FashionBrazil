@@ -253,14 +253,14 @@ final class WOOF {
 
 	//for pagination while searching is going only
 	//http://docs.woothemes.com/document/change-number-of-products-displayed-per-page/
-	if ($this->get_option('per_page') > 0 AND $this->is_isset_in_request_data($this->get_swoof_search_slug())) {
-            if (version_compare(PHP_VERSION, '5.3.0','<=') ) {
-                add_filter('loop_shop_per_page', create_function('$cols', "return {$this->get_option('per_page')};"), 9999);
-            }else{
-                add_filter('loop_shop_per_page', function($cols){return $this->get_option('per_page');}, 9999); 
-            }
+	// if ($this->get_option('per_page') > 0 AND $this->is_isset_in_request_data($this->get_swoof_search_slug())) {
+    //         if (version_compare(PHP_VERSION, '5.3.0','<=') ) {
+    //             add_filter('loop_shop_per_page', create_function('$cols', "return {$this->get_option('per_page')};"), 9999);
+    //         }else{
+    //             add_filter('loop_shop_per_page', function($cols){return $this->get_option('per_page');}, 9999); 
+    //         }
             
-	}
+	// }
 
 	//cron
 	add_filter('cron_schedules', array($this, 'cron_schedules'), 10, 1);
