@@ -83,32 +83,32 @@ if (!$pageType) {
             echo '</div>';
             echo '<div class="row add-ons">';
                 echo '<div class="col-md-4">';
-                        if ($inFavourites == true) {
-                            echo '
-                                <a href="#" class="simple-remove-from-favourites" data-product_id="'.$product->id.'">
-                                    <i class="fa fa-heart"></i>
-                                </a>
-                            ';
-                        } else {
-                            echo '
-                                <a href="#" class="simple_add_to_favourites" data-productid="'.$product->id.'">
-                                    <i class="fa fa-heart"></i>
-                                </a>
-                            ';
-                        }
+                    if ($inFavourites == true) {
+                        echo '
+                            <a href="#" class="simple-remove-from-favourites" data-product_id="'.$product->id.'">
+                                <i class="fa fa-heart"></i>
+                            </a>
+                        ';
+                    } else {
+                        echo '
+                            <a href="#" class="simple_add_to_favourites" data-productid="'.$product->id.'">
+                                <i class="fa fa-heart"></i>
+                            </a>
+                        ';
+                    }
                 echo '</div>';
                 echo '<div class="col-md-4">';
                     echo '<div class="afterpay">';
                         echo '<img src="'.get_stylesheet_directory_uri().'/assets/afterpay-logo.jpg" />';
+                        echo '<span class="afterpay-price">Buy now and pay $'.round(((int)$product->price / 4), 2).' over 4 weeks</span>';
                     echo '</div>';
                 echo '</div>';
                 echo '<div class="col-md-4">';
                     echo '<div class="laybuy">';
                         echo '<img src="'.get_stylesheet_directory_uri().'/assets/ico-laybuy.png" />';
+                        echo '<span class="laybuy-price">Buy now and pay $'.round(((int)$product->price / 6), 2).' over 6 weeks</span>';
                     echo '</div>';
                 echo '</div>';
-                echo '<span class="afterpay-price">Afterpay</span>';
-                echo '<span class="laybuy-price">Laybuy</span>';
             echo '</div>';
         echo '</div>';
     echo '</div>';

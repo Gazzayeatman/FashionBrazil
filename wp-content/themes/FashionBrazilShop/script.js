@@ -25,11 +25,6 @@ jQuery(function ($) {
             window.open(this.href , 'newwindow', 'width=' + width + ', height=' + height + ', top=' + ((window.innerHeight - height) / 2) + ', left=' + ((window.innerWidth - width) / 2));
         });
 
-        $('.add-ons .afterpay').on('click', function() {
-            var popup = $('.popuptext');
-            popup.toggle("show");
-        })
-
         $('.simple_add_to_favourites').on('click', function(e) {
             e.preventDefault();
             $(this).addClass('simple-remove-from-favourites');
@@ -69,6 +64,14 @@ jQuery(function ($) {
                 action:'simple_ajax_remove_from_favourites',
                 simple_favourites_nonce:simple_nonce.simple_favourites_nonce
             }
+        });
+
+        $('.add-ons .afterpay').on('click', function() {
+            $(this).find('.afterpay-price').toggle();
+        });
+
+        $('.add-ons .laybuy').on('click', function() {
+            $(this).find('.laybuy-price').toggle();
         });
     });
 });
