@@ -29,5 +29,46 @@ jQuery(function ($) {
             var popup = $('.popuptext');
             popup.toggle("show");
         })
+
+        $('.simple_add_to_favourites').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('simple-remove-from-favourites');
+            $(this).removeClass('simple_add_to_favourites');
+
+            var prod_id = $(this).data().productid;
+            if( isNaN(prod_id) ){
+                return;
+            }
+            prod_id = parseInt(prod_id);
+            data = {
+                prod_id:prod_id,
+                action:'simple_ajax_add_to_favourites',
+                simple_favourites_nonce:simple_nonce.simple_favourites_nonce
+            }
+            var $this_button = $(this);
+            $.post(myAjax.ajaxurl, data, function(msg){
+                var $this_messsage = $this_button.closest('.simple_container').find('.simple_message');
+                $this_messsage.html(msg);
+                $this_messsage.fadeIn();
+                setTimeout(function(){ $this_messsage.fadeOut(); }, 4000);
+            });
+        })
+
+        $('.simple-remove-from-favourites').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('simple_add_to_favourites');
+            $(this).removeClass('simple-remove-from-favourites');
+
+            var prod_id = $(this).data().product_id;
+            if(isNaN(prod_id)){
+                return;
+            }
+            prod_id = parseInt(prod_id);
+            data = {
+                prod_id:prod_id,
+                action:'simple_ajax_remove_from_favourites',
+                simple_favourites_nonce:simple_nonce.simple_favourites_nonce
+            }
+        });
     });
 });
