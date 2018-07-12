@@ -82,7 +82,7 @@ function register_top_right_menu() {
 add_action( 'init', 'register_top_right_menu' );
 
 function wpb_adding_scripts() {
-	wp_register_script('script', get_stylesheet_directory_uri().'/script.js', array('jquery'),'1.9', true);
+	wp_register_script('script', get_stylesheet_directory_uri().'/script.js?i='.rand(), array('jquery'),'1.9', true);
 	wp_enqueue_script('script');
 }
 
