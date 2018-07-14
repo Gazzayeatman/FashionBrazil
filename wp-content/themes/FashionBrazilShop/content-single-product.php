@@ -53,12 +53,9 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home">Main</a></li>
-                        <li><a data-toggle="tab" href="#description">Description</a></li>
-                        <li><a data-toggle="tab" href="#delivery">Delivery</a></li>
-                        <li><a data-toggle="tab" href="#returns">Returns</a></li>
-                        <li><a data-toggle="tab" href="#additional-information">Additional Information</a></li>
-                        <li><a data-toggle="tab" href="#reviews">Reviews</a></li>
+                        <li class="active"><a data-toggle="tab" href="#home">Description</a></li>
+                        <li><a data-toggle="tab" href="#additional-information">Details</a></li>
+                        <li><a data-toggle="tab" href="#delivery">Shipping & Returns</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="home" class="tab-pane fade in active show">
