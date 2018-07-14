@@ -50,7 +50,7 @@ get_header(); ?>
                     <div class="col-md-12">
                         <h2 class="line-header">
                             <span>
-                                <i class="fa fa-heart"></i> Whats hot right now
+                                NEW ARRIVALS
                             </span>
                         </h2>
                     </div>
