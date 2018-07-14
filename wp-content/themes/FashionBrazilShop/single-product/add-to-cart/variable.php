@@ -55,8 +55,8 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                 </div>
             </div>
             <div class="col-md-4">
-                <a href="#size-chart-modal" data-toggle="modal">
-                    <i class="fa fa-map" aria-hidden="true"></i> Size Chart
+                <a href="#size-chart-modal" class="btn color-inverse" data-toggle="modal">
+                    Size Chart
                 </a>
                 <!-- Size Chart Modal -->
                 <div class="modal" id="size-chart-modal">

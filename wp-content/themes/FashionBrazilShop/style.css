@@ -1017,3 +1017,9 @@ a.simple_add_to_favourites:hover, a.simple-remove-from-favourites {
 .big-heart {
     font-size: 1.5em;
 }
+
+.btn.color-inverse {
+    background-color: #209ED8 !important;
+    color: #FFFFFF !important;
+    font-size: 1em !important;
+}
