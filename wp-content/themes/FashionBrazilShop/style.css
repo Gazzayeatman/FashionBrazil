@@ -807,7 +807,7 @@ li.product.type-product {
 }
 
 .product-cell {
-    height: 550px;
+    height: 590px;
     border: 1px solid #209ED8 !important;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -822,15 +822,12 @@ li.product.type-product {
 }
 
 .product-cell .image {
-    min-height: 400px;
-}
-
-.product-cell .image img {
-    max-height: 400px;
+    height: 400px;
+    overflow: hidden;
 }
 
 .product-cell .details {
-    min-height: 80px;
+    min-height: 120px;
 }
 
 .product-cell .details .title {
@@ -939,6 +936,8 @@ li.product.type-product {
     
     .product-cell .image {
         min-height: 300px;
+        height: auto !important;
+        overflow: inherit !important;
     }
     
     .product-cell .image img {
