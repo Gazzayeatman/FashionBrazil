@@ -5,12 +5,12 @@
 get_header(); ?> 
 <div class="container-fluid new-carousel home-page">
     <?php echo do_shortcode('[metaslider id="3118"]'); ?>
-        <div class="container padding-40">
+        <div class="container">
             <div class="row">
-                <div class="col-md-12 laybuy-banner">
-                    <a target="_blank" href="https://www.laybuy.com/how-it-works">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/laybuy-banner-1-nz-flag.jpg" />
-                    </a>
+                <div class="col-md-12">
+                    <h2 class="line-header">
+                        &nbsp;
+                    </h2>
                 </div>
             </div>
         </div>

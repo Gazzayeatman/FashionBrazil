@@ -17,15 +17,9 @@
  */
 ?>
 <?php 
-    $isSearch = get_site_url().'?page_id=';
-    if (!_get_page_link() == $isSearch) {
-        if (is_shop()) {
-            echo '<div class="row">';
-            echo '<div class="col-md-9">';
-        } else {
-            echo '<div class="row no-search">';
-            echo '<div class="col-md-12">';
-        }
+    if (is_shop()) {
+        echo '<div class="row">';
+        echo '<div class="col-md-9">';
     } else {
         echo '<div class="row no-search">';
         echo '<div class="col-md-12">';
