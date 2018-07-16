@@ -83,18 +83,20 @@ if (!$pageType) {
             echo '</div>';
             echo '<div class="row add-ons">';
                 echo '<div class="col-md-4">';
-                    if ($inFavourites == true) {
-                        echo '
-                            <a href="#" class="simple-remove-from-favourites" data-product_id="'.$product->id.'">
-                                <i class="fa fa-heart"></i>
-                            </a>
-                        ';
-                    } else {
-                        echo '
-                            <a href="#" class="simple_add_to_favourites" data-productid="'.$product->id.'">
-                                <i class="fa fa-heart"></i>
-                            </a>
-                        ';
+                    if (is_user_logged_in()) {
+                        if ($inFavourites == true) {
+                            echo '
+                                <a href="#" class="simple-remove-from-favourites" data-product_id="'.$product->id.'">
+                                    <i class="fa fa-heart"></i>
+                                </a>
+                            ';
+                        } else {
+                            echo '
+                                <a href="#" class="simple_add_to_favourites" data-productid="'.$product->id.'">
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                            ';
+                        }
                     }
                 echo '</div>';
                 echo '<div class="col-md-4">';

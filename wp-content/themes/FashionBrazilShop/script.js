@@ -29,6 +29,8 @@ jQuery(function ($) {
             e.preventDefault();
             $(this).addClass('simple-remove-from-favourites');
             $(this).removeClass('simple_add_to_favourites');
+            $(this).find('.fa').removeClass('fa-heart-o');
+            $(this).find('.fa').addClass('fa-heart');
 
             var prod_id = $(this).data().productid;
             if( isNaN(prod_id) ){
@@ -53,6 +55,8 @@ jQuery(function ($) {
             e.preventDefault();
             $(this).addClass('simple_add_to_favourites');
             $(this).removeClass('simple-remove-from-favourites');
+            $(this).find('.fa').removeClass('fa-heart');
+            $(this).find('.fa').addClass('fa-heart-o');
 
             var prod_id = $(this).data().product_id;
             if(isNaN(prod_id)){

@@ -70,7 +70,7 @@ get_header(); ?>
                                     $args = [
                                         'post_type'   =>  'product',
                                         'stock'       =>  1,
-                                        'showposts'   =>  6,
+                                        'showposts'   =>  8,
                                         'orderby'     =>  'date',
                                         'order'       =>  'DESC',
                                         'meta_query'  =>  $meta_query
