@@ -718,7 +718,7 @@ ul.sub-menu li {
 
 .simple_add_to_favourites, .simple-remove-from-favourites {
     color: #FFFFFF !important;
-    background-color: #209ED8 !important;
+    background-color: #FEDF00 !important;
     border: 0px !important;
 }
 
@@ -978,7 +978,7 @@ li.product.type-product {
 
 a.simple_add_to_favourites, a.simple-remove-from-favourites:hover {
     background: none !important;
-    color: #209ED8 !important;
+    color: #FEDF00 !important;
 }
 
 a.simple_add_to_favourites:hover, a.simple-remove-from-favourites {
