@@ -32,7 +32,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
         <p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
     <?php else : ?>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
                         <table class="variations" cellspacing="0">
@@ -53,11 +53,13 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <a href="#size-chart-modal" class="btn color-inverse" data-toggle="modal">
-                    Size Chart
-                </a>
+                <div class="row">
+                    <div class="col-md-12 text-left">
+                        <a href="#size-chart-modal" class="btn color-inverse" data-toggle="modal">
+                            Size Chart
+                        </a>
+                    </div>
+                </div>
                 <!-- Size Chart Modal -->
                 <div class="modal" id="size-chart-modal">
                     <div class="modal-dialog">

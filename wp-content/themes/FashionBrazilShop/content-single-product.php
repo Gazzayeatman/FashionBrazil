@@ -53,8 +53,8 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home">Description</a></li>
-                        <li><a data-toggle="tab" href="#additional-information">Details</a></li>
+                        <li class="active"><a data-toggle="tab" href="#home">Buy</a></li>
+                        <li><a data-toggle="tab" href="#additional-information">Description</a></li>
                         <li><a data-toggle="tab" href="#delivery">Shipping & Returns</a></li>
                     </ul>
                     <div class="tab-content">
@@ -79,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                             </div>
                         </div>
                         <div id="description" class="tab-pane fade">
-                            <h2>Description</h2>
+                            <h2>Buy</h2>
                             <?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ) ?>
                         </div>
                         <div id="delivery" class="tab-pane fade">
@@ -127,6 +127,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                             </div>
                         </div>
                         <div id="additional-information" class="tab-pane fade">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Description</h2>
+                                    <?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ) ?>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <?php $tabs = apply_filters('woocommerce_product_tabs', []); ?>
