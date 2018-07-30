@@ -972,12 +972,12 @@ li.product.type-product {
 
 a.simple_add_to_favourites, a.simple-remove-from-favourites:hover {
     background: none !important;
-    color: #FEDF00 !important;
+    color: #FF0000 !important;
 }
 
 a.simple_add_to_favourites:hover, a.simple-remove-from-favourites {
     background: none !important;
-    color: #FEDF00 !important;
+    color: #FF0000 !important;
 }
 
 .add-ons {
@@ -1029,4 +1029,17 @@ input[value="Uncategorised"], .woof_term_159 {
 
 #metaslider_container_3474 {
     margin-bottom: -10px;
+}
+
+.variations .cart a {
+    float: none !important;
+}
+
+.text-left .btn {
+    text-align: center !important;
+    float: left !important;
+}
+
+.single-product div.product form.cart .single_add_to_cart_button {
+    float: left !important;
 }

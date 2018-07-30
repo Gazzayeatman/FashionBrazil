@@ -50,7 +50,7 @@ get_header(); ?>
                     <div class="col-md-12">
                         <h2 class="line-header">
                             <span>
-                                NEW ARRIVALS
+                                WE LOVE
                             </span>
                         </h2>
                     </div>
@@ -97,7 +97,7 @@ get_header(); ?>
                 <div class="col-md-12">
                     <h2 class="line-header">
                         <span>
-                            <i class="fa fa-instagram" aria-hidden="true"></i> Follow our instagram
+                            <i class="fa fa-instagram" aria-hidden="true"></i> Follow us on instagram
                         </span>
                     </h2>
                     <?php echo do_shortcode('[instagram-feed]'); ?>
