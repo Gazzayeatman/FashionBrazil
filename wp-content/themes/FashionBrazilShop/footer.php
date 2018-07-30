@@ -10,7 +10,7 @@
                         <?php wp_nav_menu( array( 'theme_location' => 'My Account' ) ); ?>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
-                        <h3>About Fashion Brazil</h3>
+                        <h3>About</h3>
                         <?php wp_nav_menu( array( 'theme_location' => 'Information' ) ); ?>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">

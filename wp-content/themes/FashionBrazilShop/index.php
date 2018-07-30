@@ -4,7 +4,7 @@
  */
 get_header(); ?> 
 <div class="container-fluid new-carousel home-page">
-    <?php echo do_shortcode('[metaslider id="3118"]'); ?>
+    <?php echo do_shortcode('[metaslider id="3474"]'); ?>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -14,7 +14,7 @@ get_header(); ?>
                 </div>
             </div>
         </div>
-        <div class="container padding-40">
+        <div class="container">
             <div class="row">
                 <?php
                     $my_query = new WP_Query('cat=11');
@@ -92,7 +92,7 @@ get_header(); ?>
                 </div>
             </div>
         </div>
-        <div class="container padding-40">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="line-header">
