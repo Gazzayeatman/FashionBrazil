@@ -50,7 +50,7 @@ get_header(); ?>
                     <div class="col-md-12">
                         <h2 class="line-header">
                             <span>
-                                WE LOVE
+                                <i></i>WE LOVE
                             </span>
                         </h2>
                     </div>
