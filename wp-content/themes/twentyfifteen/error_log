@@ -1,0 +1,8 @@
+[23-Dec-2017 02:49:51 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/404.php on line 10
+[24-Jan-2018 22:56:20 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/404.php on line 10
+[26-Feb-2018 05:32:51 UTC] PHP Fatal error:  Call to undefined function the_id() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/content-link.php on line 13
+[04-Mar-2018 08:31:42 UTC] PHP Fatal error:  Call to undefined function the_id() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/content.php on line 13
+[06-Mar-2018 12:32:33 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/index.php on line 17
+[19-Mar-2018 17:11:52 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/404.php on line 10
+[23-Mar-2018 15:51:24 UTC] PHP Fatal error:  Call to undefined function _e() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/author-bio.php on line 12
+[23-Mar-2018 19:38:43 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/fashio17/public_html/wp-content/themes/twentyfifteen/archive.php on line 19

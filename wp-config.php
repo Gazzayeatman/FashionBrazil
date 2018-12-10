@@ -20,7 +20,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wp_fashion_brazil');
+define('DB_NAME', 'fashionbrazil');
 
 /** MySQL database username */
 define('DB_USER', 'root');
@@ -46,14 +46,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         '.;=Snz6f@0&4!IItrS[5ig>nHjL~`bwgA>QA_xePmMS)<j~`.Yvpj}Q7F?{f(G#A');
-define('SECURE_AUTH_KEY',  ')aZ-$H&H}&p-mCxQp:aPry|*:D`MFtYu<mj!CqPH8L=y[4!{~=Md-tJ/~Xeg.fiz');
-define('LOGGED_IN_KEY',    '((p_:- ?ke4D>+yCCky4.c&)k!Jc?i-5]{PaK$5|!Xwi{[K_)}H);w3{Ie=N48=^');
-define('NONCE_KEY',        '+P of29Nj7~{QU4^<UITNQjim0&`m=#9Hpy,}efGTfG:+f<|6gzG)iv b{[%0+T;');
-define('AUTH_SALT',        'aY6&$9Rh`(h@z,&_//JyS n{UdX3HLe>)S,AQ,S<g%^tyu>tf?~?Ue}hlyu{TcWC');
-define('SECURE_AUTH_SALT', 'EQ/]CeMOhq^fG{2sFU4y/&w].)8PM!.~7GnEAYGy.~1exRlx!z:. s;E;%Zi-H$e');
-define('LOGGED_IN_SALT',   '4sAHw,Yi$G)S@1bnQi4Qg4US~hnQAZUISnB2FIgwuv4#tl9K9/^yCw#&QY=V486e');
-define('NONCE_SALT',       'G!}JW*EL[O0q]yR>)s;&gpF$Jb]9oGSI@$M^,2A}FNZB89frUmGGNr7M=g9+I2xN');
+define('AUTH_KEY',         '49)Vc%,4178M N)3]^%YqsQn@lP7cGyf@8,Q+U PfCHEEE6OP!CN];_(R/dKk^H!');
+define('SECURE_AUTH_KEY',  ';]CHBVB}hSxcS:ejbIQ0s7rxTg@k:zA7E%K@pwa[^Jo,8nXN)}b<ZmSSYMrV>co>');
+define('LOGGED_IN_KEY',    '~lvlAnQ1]j2,C4}:7H)*w*_[T}c<#0Us1Mgglq{k?bMcs>8Y*lqzSvYp2]8^qGs$');
+define('NONCE_KEY',        'W#v(+ GWK=xm6CN}|JYsC>v]&uH%r-0<48~!YTZ>dFgx,TP5y#5CPb<kTJc,x 0&');
+define('AUTH_SALT',        'nT4v.G?r8nAecV2%l]&8~ucEj*AK@=aiE*IwXsCXX7mY|q6m3B`HO!2_SJ6cvmAF');
+define('SECURE_AUTH_SALT', '?BWv1ZK6~9:jO/$%i]h<~l*4#7m)T:O_-3YYu!oUvM&{;apIo4fN)#&-eYO(avr=');
+define('LOGGED_IN_SALT',   'hzk9-|m,~-L0p9+X~v!_wN/dwB%xlH-7P$J_)&_zP($9n#wKj$Wt<=9E$g#Ma:KF');
+define('NONCE_SALT',       'pYQA;EjMQCYqO715w(h0`mrDgYi}%2l2Uw.e9AE;D3vE)R{@#59<pDrvAf<A:Hyn');
 
 /**#@-*/
 
@@ -78,6 +78,8 @@ $table_prefix  = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG', false);
+
+define('SYSTEM_URL', 'http://fashionbrazil.local');
 
 /* That's all, stop editing! Happy blogging. */
 

@@ -13,59 +13,22 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.6.3
+ * @version     3.3.2
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+defined( 'ABSPATH' ) || exit;
+
+// Note: `wc_get_gallery_image_html` was added in WC 3.3.2 and did not exist prior. This check protects against theme overrides being used on older versions of WC.
+if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
+	return;
 }
 
-global $post, $product, $woocommerce;
+global $product;
 
-$attachment_ids = $product->get_gallery_attachment_ids();
+$attachment_ids = $product->get_gallery_image_ids();
 
-if ( $attachment_ids ) {
-	$loop 		= 0;
-	$columns 	= apply_filters( 'woocommerce_product_thumbnails_columns', 3 );
-	?>
-	<div class="thumbnails <?php echo 'columns-' . $columns; ?>"><?php
-
-		foreach ( $attachment_ids as $attachment_id ) {
-
-			$classes = array( 'zoom' );
-
-			if ( $loop === 0 || $loop % $columns === 0 ) {
-				$classes[] = 'first';
-			}
-
-			if ( ( $loop + 1 ) % $columns === 0 ) {
-				$classes[] = 'last';
-			}
-
-			$image_class = implode( ' ', $classes );
-			$props       = wc_get_product_attachment_props( $attachment_id, $post );
-
-			if ( ! $props['url'] ) {
-				continue;
-			}
-
-			echo apply_filters(
-				'woocommerce_single_product_image_thumbnail_html',
-				sprintf(
-					'<a href="%s" class="%s" title="%s" data-rel="prettyPhoto[product-gallery]">%s</a>',
-					esc_url( $props['url'] ),
-					esc_attr( $image_class ),
-					esc_attr( $props['caption'] ),
-					wp_get_attachment_image( $attachment_id, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ), 0, $props )
-				),
-				$attachment_id,
-				$post->ID,
-				esc_attr( $image_class )
-			);
-
-			$loop++;
-		}
-
-	?></div>
-	<?php
+if ( $attachment_ids && has_post_thumbnail() ) {
+	foreach ( $attachment_ids as $attachment_id ) {
+		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html( $attachment_id  ), $attachment_id );
+	}
 }

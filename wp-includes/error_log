@@ -1,0 +1,4 @@
+[22-Oct-2017 01:24:07 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/fashio17/public_html/wp-includes/registration-functions.php on line 7
+[23-Dec-2017 03:01:10 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/fashio17/public_html/wp-includes/session.php on line 8
+[14-Mar-2018 22:54:07 UTC] PHP Fatal error:  Class 'Walker' not found in /home/fashio17/public_html/wp-includes/class-walker-nav-menu.php on line 17
+[23-Mar-2018 07:51:07 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/fashio17/public_html/wp-includes/locale.php on line 10
